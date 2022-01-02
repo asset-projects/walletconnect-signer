@@ -1,12 +1,11 @@
 import {useEffect, useState} from 'react';
 import {CLIENT_EVENTS} from '@walletconnect/client';
 import type {SessionTypes} from '@walletconnect/types';
-import {useRecoilValue} from 'recoil';
-import {accountState} from '../recoil/atoms';
+import {useWalletState} from '../context/wallet';
 import {useWalletConnectState} from '../context/client';
 
 export const useSubscribeWalletConnectEffect = () => {
-  const {address} = useRecoilValue(accountState);
+  const {wallet} = useWalletState();
   const {client} = useWalletConnectState();
 
   const [isReady, setIsReady] = useState<boolean>(true);
@@ -19,11 +18,15 @@ export const useSubscribeWalletConnectEffect = () => {
       return;
     }
 
+    if (!wallet) {
+      return;
+    }
+
     await client.approve({
       proposal,
       response: {
         state: {
-          accounts: [`eip155:42:${address}`],
+          accounts: [`eip155:42:${wallet.address}`],
         },
       },
     });

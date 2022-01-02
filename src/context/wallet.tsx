@@ -1,5 +1,5 @@
-import {ethers} from 'ethers';
-import React, {createContext} from 'react';
+import React, {createContext, useContext} from 'react';
+import type {ethers} from 'ethers';
 import {useWallet} from '../hooks/wallet';
 
 const WalletStateContext = createContext<{wallet: ethers.Wallet | null}>({
@@ -19,3 +19,5 @@ export const WalletContext: React.VFC<Props> = ({children}) => {
     </WalletStateContext.Provider>
   );
 };
+
+export const useWalletState = () => useContext(WalletStateContext);
