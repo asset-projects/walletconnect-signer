@@ -38,11 +38,7 @@ const Screen: React.VFC = () => {
 
       <Wallet />
 
-      {!isConnected && (
-        <>
-          <NavigationButton />
-        </>
-      )}
+      {!isConnected && <NavigationButton />}
     </SafeAreaView>
   );
 };
