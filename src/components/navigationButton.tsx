@@ -1,28 +1,30 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import {StackNavigationProp} from '../navigation/stack';
+import type {StackNavigationProp} from '../navigation/stack';
 
 export const NavigationButton: React.VFC = () => {
   const {navigate} = useNavigation<StackNavigationProp<'Home'>>();
 
-  const connectForm = () => {
+  const connectForm = useCallback(() => {
     navigate('ConnectForm');
-  };
+  }, []);
 
-  const openScanner = () => {
+  const openScanner = useCallback(() => {
     navigate('Scanner');
-  };
+  }, []);
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={openScanner} style={styles.button}>
-        <MaterialIcon name="qr-code-scanner" size={42} color="#FF5ACD" />
+        <MaterialIcon name="qr-code-scanner" size={42} color="#A9C9FF" />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={connectForm} style={styles.button}>
-        <MaterialIcon name="edit" size={42} color="#FF5ACD" />
+      <TouchableOpacity
+        onPress={connectForm}
+        style={[styles.button, styles.space]}>
+        <MaterialIcon name="edit" size={42} color="#A9C9FF" />
       </TouchableOpacity>
     </View>
   );

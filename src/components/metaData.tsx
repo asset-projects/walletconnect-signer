@@ -10,13 +10,22 @@ import {
 } from 'react-native';
 
 type Props = {
+  label?: string;
   icons: string[];
   name: string;
   url: string;
   description: string;
+  border?: boolean;
 };
 
-export const MetaData: React.VFC<Props> = ({icons, name, url, description}) => {
+export const MetaData: React.VFC<Props> = ({
+  label,
+  icons,
+  name,
+  url,
+  description,
+  border,
+}) => {
   const handlePress = useCallback(async () => {
     const supported = await Linking.canOpenURL(url);
 
@@ -28,10 +37,12 @@ export const MetaData: React.VFC<Props> = ({icons, name, url, description}) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>App</Text>
+        <Text style={styles.title}>{label ?? 'App'}</Text>
       </View>
 
-      <TouchableOpacity style={styles.innerContainer} onPress={handlePress}>
+      <TouchableOpacity
+        style={[styles.innerContainer, border && styles.border]}
+        onPress={handlePress}>
         <View style={styles.iconContainer}>
           <Image source={{uri: icons[0]}} style={styles.image} />
         </View>
@@ -61,6 +72,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 12,
   },
+  border: {
+    paddingTop: 8,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+  },
   title: {
     color: 'rgba(0, 0, 0, 0.87)',
     fontSize: 18,
@@ -82,6 +99,7 @@ const styles = StyleSheet.create({
   appDescription: {
     color: 'rgba(0, 0, 0, 0.36)',
     fontSize: 14,
+    paddingTop: 6,
   },
   image: {
     width: 64,

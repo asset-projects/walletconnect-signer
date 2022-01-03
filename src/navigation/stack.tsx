@@ -35,17 +35,25 @@ const Navigation: React.VFC = () => {
         screenOptions={{
           presentation: 'modal',
         }}>
-        <Stack.Screen name="Scanner" component={ScannerScreen} />
-        <Stack.Screen name="ConnectForm" component={ConnectFormScreen} />
+        <Stack.Screen
+          name="Scanner"
+          component={ScannerScreen}
+          options={{title: 'Scan'}}
+        />
+        <Stack.Screen
+          name="ConnectForm"
+          component={ConnectFormScreen}
+          options={{title: 'WalletConnectForm'}}
+        />
         <Stack.Screen
           name="Proposal"
           component={ProposalScreen}
-          options={{title: 'Wallet Connect'}}
+          options={{title: 'WalletConnect'}}
         />
         <Stack.Screen
           name="Request"
           component={RequestScreen}
-          options={{title: 'Wallet Connect'}}
+          options={{title: 'WalletConnect'}}
         />
       </Stack.Group>
     </Stack.Navigator>
