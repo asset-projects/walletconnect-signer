@@ -10,9 +10,14 @@ export const NavigationButton: React.VFC = () => {
     navigate('ConnectForm');
   };
 
+  const openScanner = () => {
+    navigate('Scanner');
+  };
+
   return (
     <View>
       <Button title="form" onPress={connectForm} />
+      <Button title="open scanner" onPress={openScanner} />
     </View>
   );
 };

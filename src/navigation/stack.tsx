@@ -5,6 +5,7 @@ import {
 } from '@react-navigation/native-stack';
 import {useNavigationEffect} from '../hooks/navigation';
 import HomeScreen from '../screens/home';
+import ScannerScreen from '../screens/scanner';
 import ConnectFormScreen from '../screens/walletConnectForm';
 import ProposalScreen from '../screens/proposal';
 import RequestScreen from '../screens/request';
@@ -34,6 +35,7 @@ const Navigation: React.VFC = () => {
         screenOptions={{
           presentation: 'modal',
         }}>
+        <Stack.Screen name="Scanner" component={ScannerScreen} />
         <Stack.Screen name="ConnectForm" component={ConnectFormScreen} />
         <Stack.Screen
           name="Proposal"

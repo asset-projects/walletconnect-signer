@@ -7,6 +7,7 @@ import {
   chainsState,
   jsonRpcState,
   requestListState,
+  sessionState,
   signalState,
 } from '../recoil/atoms';
 import {useWalletState} from '../context/wallet';
@@ -20,6 +21,7 @@ export const useSubscribeWalletConnectEffect = () => {
   const chains = useRecoilValue(chainsState);
   const jsonRpc = useRecoilValue(jsonRpcState);
   const setSignalState = useSetRecoilState(signalState);
+  const setSessionState = useSetRecoilState(sessionState);
   const setRequestState = useSetRecoilState(requestListState);
 
   const respondRequest = useCallback(
@@ -131,6 +133,7 @@ export const useSubscribeWalletConnectEffect = () => {
           console.log('EVENT', 'session_created');
 
           console.log('created', {session});
+          setSessionState(client.session.values);
         },
       );
 
@@ -138,6 +141,7 @@ export const useSubscribeWalletConnectEffect = () => {
         console.log('EVENT', 'session_deleted');
 
         console.log('deleted', {session});
+        setSessionState(client.session.values);
       });
     }
   }, [client]);
