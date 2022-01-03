@@ -12,6 +12,8 @@ export const useNavigationEffect = () => {
   useEffect(() => {
     if (state.type === 'proposal') {
       navigate('Proposal');
+    } else if (state.type === 'request') {
+      navigate('Request');
     }
   }, [state]);
 };

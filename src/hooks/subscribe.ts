@@ -1,8 +1,14 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {CLIENT_EVENTS} from '@walletconnect/client';
+import {formatJsonRpcError, JsonRpcResponse} from '@json-rpc-tools/utils';
 import type {SessionTypes} from '@walletconnect/types';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
-import {chainsState, jsonRpcState, signalState} from '../recoil/atoms';
+import {
+  chainsState,
+  jsonRpcState,
+  requestListState,
+  signalState,
+} from '../recoil/atoms';
 import {useWalletState} from '../context/wallet';
 import {useWalletConnectState} from '../context/client';
 import {DEFAULT_EIP155_METHODS} from '../common';
@@ -14,6 +20,16 @@ export const useSubscribeWalletConnectEffect = () => {
   const chains = useRecoilValue(chainsState);
   const jsonRpc = useRecoilValue(jsonRpcState);
   const setSignalState = useSetRecoilState(signalState);
+  const setRequestState = useSetRecoilState(requestListState);
+
+  const respondRequest = useCallback(
+    async (topic: string, response: JsonRpcResponse) => {
+      if (!client) return;
+
+      await client.respond({topic, response});
+    },
+    [client],
+  );
 
   const [isReady, setIsReady] = useState<boolean>(true);
 
@@ -72,6 +88,40 @@ export const useSubscribeWalletConnectEffect = () => {
           }
 
           setSignalState({type: 'proposal', data: {proposal}});
+        },
+      );
+
+      client.on(
+        CLIENT_EVENTS.session.request,
+        async (requestEvent: SessionTypes.RequestEvent) => {
+          if (!wallet) return;
+
+          console.log('EVENT', 'session_request', requestEvent.request);
+
+          // const chainId = requestEvent.chainId || chains[0];
+          // const [namespace] = chainId.split(':');
+
+          try {
+            const requiresApproval = jsonRpc.methods.sign.includes(
+              requestEvent.request.method,
+            );
+
+            if (requiresApproval) {
+              const {peer} = await client.session.get(requestEvent.topic);
+              setRequestState(prev => [...prev, requestEvent]);
+              setSignalState({type: 'request', data: {requestEvent, peer}});
+            } else {
+              console.log('ERROR', 'requireApprove');
+            }
+          } catch (e: any) {
+            console.log(e);
+
+            const response = formatJsonRpcError(
+              requestEvent.request.id,
+              e.message,
+            );
+            await respondRequest(requestEvent.topic, response);
+          }
         },
       );
 

@@ -2,53 +2,39 @@ import React from 'react';
 import {
   Dimensions,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useRecoilValue} from 'recoil';
-import {signalState} from '../recoil/atoms';
-import {useSession} from '../hooks/session';
-import {MetaData} from '../components/metaData';
-import {Chains} from '../components/chains';
+import {useRequest} from '../hooks/request';
 import {Account} from '../components/account';
+import {RequestMetaData} from '../components/requestMeta';
 
-const Screen: React.VFC = () => {
-  const {approveSession, rejectSession} = useSession();
-  const signalValues = useRecoilValue(signalState);
-
-  if (signalValues.type !== 'proposal') {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text>loading...</Text>
-      </SafeAreaView>
-    );
-  }
-
-  const {proposer, permissions} = signalValues.data.proposal;
+const Page: React.VFC = () => {
+  const {approveRequest, rejectRequest} = useRequest();
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Proposal</Text>
+        <Text style={styles.title}>Request</Text>
       </View>
 
-      <View style={styles.mainContainer}>
-        <MetaData {...proposer.metadata} />
-        <Chains chains={permissions.blockchain.chains} />
+      <ScrollView style={styles.mainContainer}>
         <Account />
-      </View>
+        <RequestMetaData />
+      </ScrollView>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={rejectSession}
+          onPress={rejectRequest}
           style={[styles.button, styles.rejectButton]}>
           <Text style={styles.buttonText}>Reject</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={approveSession}
+          onPress={approveRequest}
           style={[styles.button, styles.approveButton]}>
           <Text style={styles.buttonText}>Approve</Text>
         </TouchableOpacity>
@@ -56,6 +42,8 @@ const Screen: React.VFC = () => {
     </SafeAreaView>
   );
 };
+
+export default Page;
 
 const styles = StyleSheet.create({
   container: {
@@ -101,5 +89,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(215, 57, 73, 1)',
   },
 });
-
-export default Screen;

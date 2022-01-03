@@ -3,16 +3,18 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
+import {useNavigationEffect} from '../hooks/navigation';
 import HomeScreen from '../screens/home';
 import ConnectFormScreen from '../screens/walletConnectForm';
 import ProposalScreen from '../screens/proposal';
-import {useNavigationEffect} from '../hooks/navigation';
+import RequestScreen from '../screens/request';
 
 type StackParamList = {
   Home: undefined;
   Scanner: undefined;
   ConnectForm: undefined;
   Proposal: undefined;
+  Request: undefined;
 };
 
 type StackScreens = keyof StackParamList;
@@ -36,6 +38,11 @@ const Navigation: React.VFC = () => {
         <Stack.Screen
           name="Proposal"
           component={ProposalScreen}
+          options={{title: 'Wallet Connect'}}
+        />
+        <Stack.Screen
+          name="Request"
+          component={RequestScreen}
           options={{title: 'Wallet Connect'}}
         />
       </Stack.Group>
