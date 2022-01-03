@@ -22,7 +22,9 @@ export const useWalletConnectClient = (args?: Args) => {
               name: 'Test Wallet',
               description: 'Test Wallet',
               url: '#',
-              icons: ['https://walletconnect.com/walletconnect-logo.png'],
+              icons: [
+                'https://avatars.githubusercontent.com/u/46671838?s=200&v=4',
+              ],
             },
             storageOptions: {
               asyncStorage: AsyncStorage as any,
