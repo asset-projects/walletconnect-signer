@@ -118,9 +118,10 @@ export const useSubscribeWalletConnectEffect = () => {
           } catch (e: any) {
             console.log(e);
 
+            const message = e.message ?? undefined;
             const response = formatJsonRpcError(
               requestEvent.request.id,
-              e.message,
+              message,
             );
             await respondRequest(requestEvent.topic, response);
           }
