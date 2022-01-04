@@ -9,8 +9,12 @@ export const useWallet = () => {
   const {privateKey} = useRecoilValue(accountState);
 
   useEffect(() => {
-    const wallet = new ethers.Wallet(privateKey);
-    setWallet(wallet);
+    try {
+      const wallet = new ethers.Wallet(privateKey);
+      setWallet(wallet);
+    } catch {
+      console.log('ERROR', 'invalid privatekey');
+    }
   }, [privateKey]);
 
   return wallet;
