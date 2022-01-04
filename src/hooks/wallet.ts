@@ -30,6 +30,8 @@ export const useConnectNetwork = () => {
       }
 
       setNetwork([...newList]);
+    } else {
+      setNetwork([]);
     }
   }, [chainData, sessionList]);
 

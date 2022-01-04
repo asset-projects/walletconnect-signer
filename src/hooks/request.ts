@@ -21,7 +21,7 @@ export const useRequest = () => {
   const [requests, setRequests] = useRecoilState(requestListState);
   const resetSignalValues = useResetRecoilState(signalState);
 
-  const {personalSign} = useSigner();
+  const {personalSign, ethSendTransaction} = useSigner();
 
   const removeFromPending = async (requestEvent: SessionTypes.RequestEvent) => {
     setRequests(requests.filter(x => x.request.id !== requestEvent.request.id));
@@ -36,9 +36,9 @@ export const useRequest = () => {
     try {
       // const chainId = requestEvent.chainId || chains[0];
 
-      const [message, address] = requestEvent.request.params;
-
       if (requestEvent.request.method === 'personal_sign') {
+        const [message, address] = requestEvent.request.params;
+
         const result = await personalSign(address, message);
         const response = formatJsonRpcResult(requestEvent.request.id, result);
         client.respond({
@@ -47,6 +47,18 @@ export const useRequest = () => {
         });
       } else if (requestEvent.request.method === 'eth_signTypedData') {
         //
+      } else if (requestEvent.request.method === 'eth_sendTransaction') {
+        const param = requestEvent.request.params;
+        if (!param.length) {
+          return console.log('ERROR', 'empty Parameter');
+        }
+
+        const result = await ethSendTransaction(param[0]);
+        const response = formatJsonRpcResult(requestEvent.request.id, result);
+        client.respond({
+          topic: requestEvent.topic,
+          response,
+        });
       }
     } catch (e: any) {
       console.log(
