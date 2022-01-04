@@ -6,7 +6,7 @@ import {CHAIN_DATA} from '../common/chainData';
 import {CHAIN_JSON_RPC} from '../common/jsonRpc';
 
 type Account = {
-  address: string;
+  // address: string;
   privateKey: string;
 };
 

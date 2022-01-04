@@ -1,12 +1,25 @@
-import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import React, {useCallback} from 'react';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useWalletState} from '../context/wallet';
 import {useConnectNetwork} from '../hooks/wallet';
+import {StackNavigationProp} from '../navigation/stack';
 
 export const Wallet: React.VFC = () => {
+  const {navigate} = useNavigation<StackNavigationProp<'Home'>>();
   const {wallet} = useWalletState();
   const connectNetworkList = useConnectNetwork();
+
+  const openWallet = useCallback(() => {
+    navigate('Wallet');
+  }, []);
 
   if (!wallet) {
     return (
@@ -18,7 +31,7 @@ export const Wallet: React.VFC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inner}>
+      <TouchableOpacity onPress={openWallet} style={styles.inner}>
         <LinearGradient colors={['#A9C9FF', '#FFBBEC']} style={styles.box}>
           <View>
             <Text style={styles.addressLabel}>ADDRESS</Text>
@@ -36,7 +49,7 @@ export const Wallet: React.VFC = () => {
             )}
           </View>
         </LinearGradient>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
