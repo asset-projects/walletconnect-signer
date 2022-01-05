@@ -32,14 +32,13 @@ export const useRequest = () => {
     if (signalValues.type !== 'request') return;
 
     const {requestEvent} = signalValues.data;
+    const chainId = requestEvent.chainId || chains[0];
 
     try {
-      // const chainId = requestEvent.chainId || chains[0];
-
       if (requestEvent.request.method === 'personal_sign') {
         const [message, address] = requestEvent.request.params;
 
-        const result = await personalSign(address, message);
+        const result = await personalSign(chainId, address, message);
         const response = formatJsonRpcResult(requestEvent.request.id, result);
         client.respond({
           topic: requestEvent.topic,
@@ -53,7 +52,7 @@ export const useRequest = () => {
           return console.log('ERROR', 'empty Parameter');
         }
 
-        const result = await ethSendTransaction(param[0]);
+        const result = await ethSendTransaction(chainId, param[0]);
         const response = formatJsonRpcResult(requestEvent.request.id, result);
         client.respond({
           topic: requestEvent.topic,

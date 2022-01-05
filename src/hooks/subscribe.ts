@@ -10,12 +10,10 @@ import {
   sessionState,
   signalState,
 } from '../recoil/atoms';
-import {useWalletState} from '../context/wallet';
 import {useWalletConnectState} from '../context/client';
 import {DEFAULT_EIP155_METHODS} from '../common';
 
 export const useSubscribeWalletConnectEffect = () => {
-  const {wallet} = useWalletState();
   const {client} = useWalletConnectState();
 
   const chains = useRecoilValue(chainsState);
@@ -96,12 +94,10 @@ export const useSubscribeWalletConnectEffect = () => {
       client.on(
         CLIENT_EVENTS.session.request,
         async (requestEvent: SessionTypes.RequestEvent) => {
-          if (!wallet) return;
-
           console.log('EVENT', 'session_request', requestEvent.request);
 
           // const chainId = requestEvent.chainId || chains[0];
-          // const [namespace] = chainId.split(':');
+          // const [namespace, networkId] = chainId.split(':');
 
           try {
             const requiresApproval = jsonRpc.methods.sign.includes(

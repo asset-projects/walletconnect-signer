@@ -1,5 +1,5 @@
-import {ethers} from 'ethers';
 import {useEffect, useState} from 'react';
+import {ethers, providers, Wallet} from 'ethers';
 import {useRecoilValue} from 'recoil';
 import {accountState, chainDataState, sessionState} from '../recoil/atoms';
 import type {ChainNamespaces} from '../types';
@@ -18,6 +18,23 @@ export const useWallet = () => {
   }, [privateKey]);
 
   return wallet;
+};
+
+export const useWalletProvider = () => {
+  const {privateKey} = useRecoilValue(accountState);
+  const chainData = useRecoilValue(chainDataState);
+
+  const getWallet = (chainId: string) => {
+    const [, networkId] = chainId.split(':');
+    const rpc = chainData.eip155[networkId].rpc[0];
+
+    const wallet = new Wallet(privateKey, new providers.JsonRpcProvider(rpc));
+    return wallet;
+  };
+
+  return {
+    getWallet,
+  };
 };
 
 export const useConnectNetwork = () => {
