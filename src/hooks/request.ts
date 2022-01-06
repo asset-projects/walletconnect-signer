@@ -21,7 +21,13 @@ export const useRequest = () => {
   const [requests, setRequests] = useRecoilState(requestListState);
   const resetSignalValues = useResetRecoilState(signalState);
 
-  const {personalSign, ethSendTransaction} = useSigner();
+  const {
+    personalSign,
+    ethSendTransaction,
+    ethSignTypedData,
+    ethSign,
+    ethSignTransaction,
+  } = useSigner();
 
   const removeFromPending = async (requestEvent: SessionTypes.RequestEvent) => {
     setRequests(requests.filter(x => x.request.id !== requestEvent.request.id));
@@ -45,7 +51,14 @@ export const useRequest = () => {
           response,
         });
       } else if (requestEvent.request.method === 'eth_signTypedData') {
-        //
+        const [targetAddress, params] = requestEvent.request.params;
+
+        const result = await ethSignTypedData(chainId, targetAddress, params);
+        const response = formatJsonRpcResult(requestEvent.request.id, result);
+        client.respond({
+          topic: requestEvent.topic,
+          response,
+        });
       } else if (requestEvent.request.method === 'eth_sendTransaction') {
         const param = requestEvent.request.params;
         if (!param.length) {
@@ -53,6 +66,24 @@ export const useRequest = () => {
         }
 
         const result = await ethSendTransaction(chainId, param[0]);
+        const response = formatJsonRpcResult(requestEvent.request.id, result);
+        client.respond({
+          topic: requestEvent.topic,
+          response,
+        });
+      } else if (requestEvent.request.method === 'eth_sign') {
+        const [targetAddress, message] = requestEvent.request.params;
+
+        const result = await ethSign(chainId, targetAddress, message);
+        const response = formatJsonRpcResult(requestEvent.request.id, result);
+        client.respond({
+          topic: requestEvent.topic,
+          response,
+        });
+      } else if (requestEvent.request.method === 'eth_signTransaction') {
+        const [targetAddress, param] = requestEvent.request.params;
+
+        const result = await ethSignTransaction(chainId, targetAddress, param);
         const response = formatJsonRpcResult(requestEvent.request.id, result);
         client.respond({
           topic: requestEvent.topic,
