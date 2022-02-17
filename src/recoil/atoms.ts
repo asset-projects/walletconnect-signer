@@ -1,3 +1,4 @@
+import Config from 'react-native-config';
 import type {SessionTypes} from '@walletconnect/types';
 import {atom} from 'recoil';
 import type {ChainNamespaces, SignalStateType} from '../types';
@@ -20,6 +21,7 @@ export const accountState = atom({
   key: 'accountState',
   default: {
     privateKey:
+      Config.PRIVATEKEY ??
       '0x051b031dc6353b46e52a8bae439a7af32174e3f5c52c46b545a652013689ed2c',
   } as Account,
 });

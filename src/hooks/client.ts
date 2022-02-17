@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import Config from 'react-native-config';
 import WalletConnectClient from '@walletconnect/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -16,7 +17,7 @@ export const useWalletConnectClient = (args?: Args) => {
           const client = await WalletConnectClient.init({
             controller: true,
             relayUrl: 'wss://relay.walletconnect.com',
-            projectId: '',
+            projectId: Config.WALLET_CONNECT_PROJECT_ID,
             logger: args?.debug ? 'debug' : undefined,
             metadata: {
               name: 'Test Wallet',

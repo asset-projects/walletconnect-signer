@@ -8,12 +8,13 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "android:clean": "cd android && ./gradlew clean && cd ..",
     "clear": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-*",
     "postinstall": "rn-nodeify --hack --install crypto"
   },
   "dependencies": {
     "@ethersproject/shims": "^5.5.0",
-    "@react-native-async-storage/async-storage": "^1.15.14",
+    "@react-native-async-storage/async-storage": "^1.16.1",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
@@ -27,6 +28,7 @@
     "react": "17.0.2",
     "react-native": "^0.66.4",
     "react-native-camera": "^4.2.1",
+    "react-native-config": "^1.4.5",
     "react-native-crypto": "^2.2.0",
     "react-native-get-random-values": "^1.7.2",
     "react-native-linear-gradient": "^2.5.6",
