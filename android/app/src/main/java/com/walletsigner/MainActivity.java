@@ -1,4 +1,4 @@
-package com.wallet;
+package com.walletsigner;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
