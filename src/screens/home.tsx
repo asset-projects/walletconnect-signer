@@ -1,42 +1,23 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {useRecoilValue} from 'recoil';
-import {isConnectedState} from '../recoil/selector';
-import {Wallet} from '../components/wallet';
-import {NetworkComponent} from '../components/network';
-import {NavigationButton} from '../components/navigationButton';
+import React, {type FC} from 'react';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {COMMON_STYLES} from '../commons/styles';
+import {HomeHeader} from '../components/homeHeader';
+import {WalletCard} from '../features/wallet/components/walletCard';
+import {WalletConnectSessions} from '../features/walletconnect/components/sessions';
 
-const Screen: React.VFC = () => {
-  const isConnected = useRecoilValue(isConnectedState);
+const Screen: FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.topBox}>
-        <Wallet />
-        <NetworkComponent />
-      </View>
+    <SafeAreaView style={[COMMON_STYLES.flex1, COMMON_STYLES.backgroundColor]}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
-      {!isConnected && (
-        <View style={styles.bottomBox}>
-          <NavigationButton />
-        </View>
-      )}
+      <HomeHeader />
+      <WalletCard />
+
+      <WalletConnectSessions />
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-  },
-  topBox: {
-    flex: 4,
-  },
-  bottomBox: {
-    flex: 1,
-  },
-});
 
 export default Screen;
