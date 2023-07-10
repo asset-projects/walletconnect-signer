@@ -4,9 +4,11 @@ export const colors = {
   blue: '#0EA5E9',
   red: '#EF4444',
   gray: '#404040',
+  cyan: '#22D3EE',
 
   border: '#ccc',
   inputBackground: '#F4F4F5',
   inputBorder: '#A1A1AA',
   inputPlaceholder: '#D4D4D4',
+  shadow: '#3333',
 };

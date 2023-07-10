@@ -1,9 +1,9 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {type FC} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/native';
 import {useRecoilValue} from 'recoil';
-import {DEVICE_WIDTH} from '../../../commons/styles';
+import {colors, DEVICE_WIDTH} from '../../../commons';
 import type {RootStackNavigationProp} from '../../../navigation';
 import {walletState} from '../../../recoil/wallet';
 
@@ -20,7 +20,7 @@ export const WalletCard: FC = () => {
       <View style={styles.card}>
         <View style={styles.editButtonContainer}>
           <TouchableOpacity onPress={onPress} style={styles.editButton}>
-            <Icon name="settings" color={'#fff'} size={24} />
+            <Icon name="settings" color={colors.white} size={24} />
           </TouchableOpacity>
         </View>
 
@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
   card: {
     height: 150,
     width: DEVICE_WIDTH * 0.96,
-    backgroundColor: '#37ABFF',
+    backgroundColor: colors.cyan,
     padding: 10,
     borderRadius: 12,
     // shadow
-    shadowColor: '#333',
+    shadowColor: colors.shadow,
     shadowOffset: {
       width: 0,
       height: 3,
@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   addressLabel: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '800',
   },
   address: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 15,
     fontWeight: '700',
     marginTop: 2,
