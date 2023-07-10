@@ -40,7 +40,11 @@ const Navigation: FC = () => {
       </Stack.Group>
 
       <Stack.Group screenOptions={{presentation: 'modal'}}>
-        <Stack.Screen name="Scan" component={ScanScreen} />
+        <Stack.Screen
+          name="Scan"
+          component={ScanScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Group>
     </Stack.Navigator>

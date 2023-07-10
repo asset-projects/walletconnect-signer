@@ -1,4 +1,3 @@
-import {useCallback} from 'react';
 import {useForm} from 'react-hook-form';
 import {sleep} from '../../../utils/commons';
 import {useWalletConnectDispatch} from '../context/walletConnectProvider';
@@ -29,9 +28,9 @@ export const useSessionUriForm = (callback?: () => void) => {
     }
   });
 
-  const onReset = useCallback(() => {
+  const onReset = () => {
     reset();
-  }, [reset]);
+  };
 
   return {
     control,
