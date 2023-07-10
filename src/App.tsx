@@ -13,10 +13,7 @@ import React, {type FC} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {RecoilRoot} from 'recoil';
 import {COMMON_STYLES} from './commons/styles';
-import {WalletConnectBottomSheetProvider} from './features/walletconnect/context/bottomSheetProvider';
-import {WalletConnectBottomSheet} from './features/walletconnect/components/bottomSheet';
-import {WalletConnectProvider} from './features/walletconnect/context/walletConnectProvider';
-import {useWalletConnectEffects} from './features/walletconnect/hooks/useWalletConnectEffects';
+import {WalletConnectProvider} from './features/walletconnect';
 import {useInitialization} from './hooks/useInitialization';
 import Navigation from './navigation';
 
@@ -25,9 +22,7 @@ const App: FC = () => {
     <GestureHandlerRootView style={COMMON_STYLES.flex1}>
       <RecoilRoot>
         <WalletConnectProvider>
-          <WalletConnectBottomSheetProvider>
-            <Main />
-          </WalletConnectBottomSheetProvider>
+          <Main />
         </WalletConnectProvider>
       </RecoilRoot>
     </GestureHandlerRootView>
@@ -37,12 +32,9 @@ const App: FC = () => {
 const Main: FC = () => {
   const {onInitialize} = useInitialization();
 
-  useWalletConnectEffects();
-
   return (
     <NavigationContainer onReady={onInitialize}>
       <Navigation />
-      <WalletConnectBottomSheet />
     </NavigationContainer>
   );
 };

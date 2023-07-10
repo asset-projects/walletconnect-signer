@@ -3,7 +3,7 @@ import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {COMMON_STYLES} from '../commons/styles';
 import {HomeHeader} from '../components/homeHeader';
 import {WalletCard} from '../features/wallet/components/walletCard';
-import {WalletConnectSessions} from '../features/walletconnect/components/sessions';
+import {WalletConnectSessions} from '../features/walletconnect';
 
 const Screen: FC = () => {
   const isDarkMode = useColorScheme() === 'dark';

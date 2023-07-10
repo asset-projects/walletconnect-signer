@@ -11,7 +11,7 @@ import {
 import {Controller} from 'react-hook-form';
 import {COMMON_STYLES} from '../commons/styles';
 import {Input} from '../components/commons/input';
-import {useSessionUriForm} from '../features/walletconnect/hooks/useSessionUriForm';
+import {useSessionUriForm} from '../features/walletconnect';
 import type {RootStackNavigationProp} from '../navigation';
 
 const Screen: FC = () => {

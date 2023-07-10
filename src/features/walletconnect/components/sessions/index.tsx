@@ -9,11 +9,13 @@ export const WalletConnectSessions: FC = () => {
   const {web3wallet} = useWalletConnectState();
   const isWalletConnectConnected = useRecoilValue(walletConnectConnectedState);
 
-  if (!web3wallet || !isWalletConnectConnected) {
+  const activeSessions = web3wallet?.getActiveSessions();
+
+  if (!isWalletConnectConnected || !activeSessions) {
     return <></>;
   }
 
-  const sessions = Object.values(web3wallet.getActiveSessions());
+  const sessions = Object.values(activeSessions);
 
   if (!sessions || !sessions.length) {
     return (

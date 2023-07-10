@@ -3,7 +3,7 @@ import {getSdkError} from '@walletconnect/utils';
 import React, {type FC} from 'react';
 import {Image, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import {useResetRecoilState} from 'recoil';
-import {useWalletConnectState} from '../features/walletconnect/context/walletConnectProvider';
+import {useWalletConnectState} from '../features/walletconnect';
 import {RootStackNavigationProp, RootStackRouteProps} from '../navigation';
 import {walletConnectConnectedState} from '../recoil/walletConnect';
 
@@ -19,7 +19,9 @@ const Screen: FC = () => {
     walletConnectConnectedState,
   );
 
-  if (!web3wallet) {
+  const activeSessions = web3wallet?.getActiveSessions();
+
+  if (!activeSessions) {
     return (
       <SafeAreaView>
         <></>
@@ -27,16 +29,16 @@ const Screen: FC = () => {
     );
   }
 
-  const sessions = Object.values(web3wallet?.getActiveSessions());
+  const sessions = Object.values(activeSessions);
   const session = sessions.find(s => s.topic === topic);
 
   const onExtendSession = async () => {
-    await web3wallet.extendSession({topic});
+    await web3wallet?.extendSession({topic});
   };
 
   const onDisconnect = async () => {
     try {
-      await web3wallet.disconnectSession({
+      await web3wallet?.disconnectSession({
         topic,
         reason: getSdkError('USER_DISCONNECTED'),
       });

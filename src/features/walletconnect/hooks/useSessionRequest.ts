@@ -75,13 +75,9 @@ export const useSessionRequest = () => {
   };
 
   const onApprove = async () => {
-    if (!web3wallet) {
-      return;
-    }
-
     try {
       const response = await approveRequest();
-      await web3wallet.respondSessionRequest({
+      await web3wallet?.respondSessionRequest({
         topic,
         response,
       });
@@ -92,17 +88,13 @@ export const useSessionRequest = () => {
   };
 
   const onReject = async () => {
-    if (!web3wallet) {
-      return;
-    }
-
     const response = formatJsonRpcError(
       id,
       getSdkError('USER_REJECTED_METHODS').message,
     );
 
     try {
-      await web3wallet.respondSessionRequest({topic, response});
+      await web3wallet?.respondSessionRequest({topic, response});
       closeBottomSheet();
     } catch (e) {
       console.log('onReject error', e);

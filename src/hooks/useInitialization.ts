@@ -1,4 +1,4 @@
-import {useWalletConnectInitialization} from '../features/walletconnect/hooks/useWalletConnectInitialization';
+import {useWalletConnectInitialization} from '../features/walletconnect';
 
 export const useInitialization = () => {
   const {onWalletConnectInitialize} = useWalletConnectInitialization();

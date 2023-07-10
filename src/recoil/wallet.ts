@@ -1,6 +1,6 @@
 import {ethers} from 'ethers';
 import {atom, selector} from 'recoil';
-import {MOCK_WALLET} from '../commons/mock';
+import {MOCK_WALLET} from '../assets';
 
 export const walletMnemonicState = atom({
   key: 'walletMnemonicState',

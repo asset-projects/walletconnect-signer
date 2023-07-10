@@ -7,14 +7,14 @@ import {
   walletConnectRequestEventDataState,
   walletConnectRequestSessionState,
 } from '../../../recoil/walletConnect';
-import {useWalletConnectState} from '../context/walletConnectProvider';
 import {
   useWalletConnectBottomSheetDispatch,
   useWalletConnectBottomSheetState,
 } from '../context/bottomSheetProvider';
+import {useWalletConnectState} from '../context/walletConnectProvider';
 import {EIP155_SIGNING_METHODS} from '../utils/eip155';
 
-export const useWalletConnectEffects = () => {
+export const useSessionEffects = () => {
   const {web3wallet} = useWalletConnectState();
   const {bottomSheetType} = useWalletConnectBottomSheetState();
   const {openBottomSheet} = useWalletConnectBottomSheetDispatch();
@@ -91,12 +91,6 @@ export const useWalletConnectEffects = () => {
       web3wallet.on('session_request', onSessionRequest);
       web3wallet.on('session_delete', onSessionDelete);
     }
-
-    // return () => {
-    //   web3wallet?.off('session_proposal', onSessionProposal);
-    //   web3wallet?.off('session_request', onSessionRequest);
-    //   web3wallet?.off('session_delete', onSessionDelete);
-    // };
   }, [
     isMounted,
     web3wallet,
