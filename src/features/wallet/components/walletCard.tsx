@@ -1,5 +1,6 @@
 import React, {type FC} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {useRecoilValue} from 'recoil';
 import {DEVICE_WIDTH} from '../../../commons/styles';
@@ -19,7 +20,7 @@ export const WalletCard: FC = () => {
       <View style={styles.card}>
         <View style={styles.editButtonContainer}>
           <TouchableOpacity onPress={onPress} style={styles.editButton}>
-            <Text style={styles.editButtonLabel}>Edit</Text>
+            <Icon name="settings" color={'#fff'} size={24} />
           </TouchableOpacity>
         </View>
 
@@ -62,11 +63,6 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingTop: 4,
     paddingBottom: 4,
-  },
-  editButtonLabel: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '700',
   },
   addressLabel: {
     color: '#fff',
