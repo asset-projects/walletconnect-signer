@@ -8,24 +8,34 @@
  * @format
  */
 
-import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {type FC} from 'react';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {RecoilRoot} from 'recoil';
-import {NavigationRoot} from './navigation';
-import {WalletContext} from './context/wallet';
-import {WCClientContext} from './context/client';
-import {SubscribeContext} from './context/subscribe';
+import {COMMON_STYLES} from './commons/styles';
+import {WalletConnectProvider} from './features/walletconnect';
+import {useInitialization} from './hooks/useInitialization';
+import Navigation from './navigation';
 
-const App: React.VFC = () => {
+const App: FC = () => {
   return (
-    <RecoilRoot>
-      <WalletContext>
-        <WCClientContext>
-          <SubscribeContext>
-            <NavigationRoot />
-          </SubscribeContext>
-        </WCClientContext>
-      </WalletContext>
-    </RecoilRoot>
+    <GestureHandlerRootView style={COMMON_STYLES.flex1}>
+      <RecoilRoot>
+        <WalletConnectProvider>
+          <Main />
+        </WalletConnectProvider>
+      </RecoilRoot>
+    </GestureHandlerRootView>
+  );
+};
+
+const Main: FC = () => {
+  const {onInitialize} = useInitialization();
+
+  return (
+    <NavigationContainer onReady={onInitialize}>
+      <Navigation />
+    </NavigationContainer>
   );
 };
 
