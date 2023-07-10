@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {useSetRecoilState} from 'recoil';
 import {walletConnectConnectedState} from '../../../recoil/walletConnect';
+import {isEmptyObject} from '../../../utils/commons';
 import {useWalletConnectState} from '../context/walletConnectProvider';
 
 export const useActiveSessions = () => {
@@ -9,8 +10,8 @@ export const useActiveSessions = () => {
 
   useEffect(() => {
     if (web3wallet) {
-      const activeSessions = web3wallet?.getActiveSessions();
-      activeSessions && setIsConnected(true);
+      const activeSessions = web3wallet.getActiveSessions();
+      !isEmptyObject(activeSessions as Object) && setIsConnected(true);
     }
   }, [setIsConnected, web3wallet]);
 };
