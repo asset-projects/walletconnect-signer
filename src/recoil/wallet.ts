@@ -34,8 +34,3 @@ export const walletState = selector({
     };
   },
 });
-
-export const connectState = atom({
-  key: 'connectState',
-  default: false,
-});

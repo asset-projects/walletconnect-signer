@@ -1,12 +1,15 @@
 import React, {type FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {useRecoilValue} from 'recoil';
+import {walletConnectConnectedState} from '../../../../recoil/walletConnect';
 import {useWalletConnectState} from '../../context/walletConnectProvider';
 import {WalletConnectSessionList} from './list';
 
 export const WalletConnectSessions: FC = () => {
   const {web3wallet} = useWalletConnectState();
+  const isWalletConnectConnected = useRecoilValue(walletConnectConnectedState);
 
-  if (!web3wallet) {
+  if (!web3wallet || !isWalletConnectConnected) {
     return <></>;
   }
 

@@ -1,16 +1,23 @@
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {getSdkError} from '@walletconnect/utils';
 import React, {type FC} from 'react';
 import {Image, SafeAreaView, Text, TouchableOpacity} from 'react-native';
+import {useResetRecoilState} from 'recoil';
 import {useWalletConnectState} from '../features/walletconnect/context/walletConnectProvider';
-import {RootStackRouteProps} from '../navigation';
+import {RootStackNavigationProp, RootStackRouteProps} from '../navigation';
+import {walletConnectConnectedState} from '../recoil/walletConnect';
 
 const Screen: FC = () => {
   const {
     params: {topic},
   } = useRoute<RootStackRouteProps<'WalletConnectSession'>>();
+  const {goBack} =
+    useNavigation<RootStackNavigationProp<'WalletConnectSession'>>();
 
   const {web3wallet} = useWalletConnectState();
+  const resetIsWalletConnectConnected = useResetRecoilState(
+    walletConnectConnectedState,
+  );
 
   if (!web3wallet) {
     return (
@@ -28,10 +35,17 @@ const Screen: FC = () => {
   };
 
   const onDisconnect = async () => {
-    await web3wallet.disconnectSession({
-      topic,
-      reason: getSdkError('USER_DISCONNECTED'),
-    });
+    try {
+      await web3wallet.disconnectSession({
+        topic,
+        reason: getSdkError('USER_DISCONNECTED'),
+      });
+
+      resetIsWalletConnectConnected();
+      goBack();
+    } catch (e) {
+      console.log('Error disconnecting session', e);
+    }
   };
 
   if (!session) {

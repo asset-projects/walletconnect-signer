@@ -3,11 +3,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useRecoilValue} from 'recoil';
 import {type RootStackNavigationProp} from '../navigation';
-import {connectState} from '../recoil/wallet';
+import {walletConnectConnectedState} from '../recoil/walletConnect';
 
 export const HomeHeader: FC = () => {
   const {navigate} = useNavigation<RootStackNavigationProp<'Home'>>();
-  const isConnect = useRecoilValue(connectState);
+  const isConnected = useRecoilValue(walletConnectConnectedState);
 
   const onPress = useCallback(() => {
     navigate('Scan');
@@ -19,7 +19,7 @@ export const HomeHeader: FC = () => {
       <View style={styles.centerContainer} />
       <View style={styles.rightContainer}>
         <TouchableOpacity onPress={onPress}>
-          <Text>{isConnect ? 'disconnect' : 'connect'}</Text>
+          <Text>{isConnected ? 'disconnect' : 'connect'}</Text>
         </TouchableOpacity>
       </View>
     </View>

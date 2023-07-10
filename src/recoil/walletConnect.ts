@@ -1,6 +1,11 @@
 import type {SessionTypes, SignClientTypes} from '@walletconnect/types';
 import {atom} from 'recoil';
 
+export const walletConnectConnectedState = atom<boolean>({
+  key: 'walletConnectConnectedState',
+  default: false,
+});
+
 export const walletConnectPairedProposalState = atom<
   SignClientTypes.EventArguments['session_proposal']
 >({

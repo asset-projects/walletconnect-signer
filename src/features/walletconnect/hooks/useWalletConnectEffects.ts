@@ -1,7 +1,8 @@
 import type {SignClientTypes} from '@walletconnect/types';
 import {useCallback, useEffect, useState} from 'react';
-import {useSetRecoilState} from 'recoil';
+import {useResetRecoilState, useSetRecoilState} from 'recoil';
 import {
+  walletConnectConnectedState,
   walletConnectPairedProposalState,
   walletConnectRequestEventDataState,
   walletConnectRequestSessionState,
@@ -18,6 +19,7 @@ export const useWalletConnectEffects = () => {
   const {bottomSheetType} = useWalletConnectBottomSheetState();
   const {openBottomSheet} = useWalletConnectBottomSheetDispatch();
 
+  const resetConnected = useResetRecoilState(walletConnectConnectedState);
   const setPairedProposal = useSetRecoilState(walletConnectPairedProposalState);
   const setRequestSession = useSetRecoilState(walletConnectRequestSessionState);
   const setRequestEventData = useSetRecoilState(
@@ -71,19 +73,36 @@ export const useWalletConnectEffects = () => {
     [openBottomSheet, setRequestEventData, setRequestSession, web3wallet],
   );
 
+  const onSessionDelete = useCallback(
+    (requestEvent: SignClientTypes.EventArguments['session_delete']) => {
+      console.log('onSessionDelete', requestEvent);
+      resetConnected();
+    },
+    [resetConnected],
+  );
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     if (web3wallet && bottomSheetType && !isMounted) {
       setIsMounted(true);
+
       web3wallet.on('session_proposal', onSessionProposal);
       web3wallet.on('session_request', onSessionRequest);
+      web3wallet.on('session_delete', onSessionDelete);
     }
+
+    // return () => {
+    //   web3wallet?.off('session_proposal', onSessionProposal);
+    //   web3wallet?.off('session_request', onSessionRequest);
+    //   web3wallet?.off('session_delete', onSessionDelete);
+    // };
   }, [
     isMounted,
+    web3wallet,
     bottomSheetType,
     onSessionProposal,
     onSessionRequest,
-    web3wallet,
+    onSessionDelete,
   ]);
 };
