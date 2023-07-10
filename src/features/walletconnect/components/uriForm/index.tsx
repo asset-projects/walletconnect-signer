@@ -74,8 +74,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: INPUT_WIDTH,
-    backgroundColor: colors.inputBackground,
-    borderColor: colors.inputBorder,
   },
   button: {
     justifyContent: 'center',
