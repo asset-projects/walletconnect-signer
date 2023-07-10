@@ -1,14 +1,14 @@
 import React, {type FC} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {DEVICE_WIDTH} from '../../../../../commons/styles';
+import {DEVICE_WIDTH} from '../../../../../commons';
 import {
   walletConnectRequestEventDataState,
   walletConnectRequestSessionState,
 } from '../../../../../recoil/walletConnect';
 import {useSessionRequest} from '../../../hooks/useSessionRequest';
-import {SheetHeader} from './commons/sheetHeader';
 import {getSignParamsMessage} from '../../../utils/helper';
+import {SheetHeader} from './commons/sheetHeader';
 
 export const SignTypedDataSheet: FC = () => {
   const requestSession = useRecoilValue(walletConnectRequestSessionState);

@@ -1,6 +1,6 @@
 import React, {type FC} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DEVICE_WIDTH} from '../../../../../../commons/styles';
+import {DEVICE_WIDTH, colors} from '../../../../../../commons';
 
 type Props = {
   icon: string;
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 16,
-    borderBottomColor: '#ccc',
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
   },
   iconContainer: {
@@ -54,15 +54,16 @@ const styles = StyleSheet.create({
     borderRadius: APP_ICON_SIZE / 2,
   },
   appName: {
+    color: colors.black,
     fontSize: 18,
     fontWeight: 'bold',
   },
   text: {
-    color: '#555',
+    color: colors.black,
     fontSize: 16,
   },
   url: {
-    color: '#888',
+    color: colors.black2,
     fontSize: 16,
     fontWeight: '300',
     paddingTop: 4,

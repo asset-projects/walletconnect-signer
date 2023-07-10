@@ -1,7 +1,7 @@
 import React, {type FC} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {DEVICE_WIDTH} from '../../../../../commons/styles';
+import {DEVICE_WIDTH} from '../../../../../commons';
 import {
   walletConnectRequestEventDataState,
   walletConnectRequestSessionState,
