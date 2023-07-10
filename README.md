@@ -83,8 +83,6 @@ Now that you have successfully run the app, let's modify it.
 
 ## References
 
-You may find the following resources useful:
-
 - [WalletConnect's React Native Installation Guide](https://docs.walletconnect.com/2.0/reactnative/web3wallet/Installation)
 - [WalletConnect's React Native Examples on GitHub](https://github.com/WalletConnect/react-native-examples)
 
