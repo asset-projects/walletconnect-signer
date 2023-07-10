@@ -12,7 +12,7 @@ import {Controller} from 'react-hook-form';
 import {useRecoilValue} from 'recoil';
 import {COMMON_STYLES, DEVICE_WIDTH} from '../commons/styles';
 import {Input} from '../components/commons/input';
-import {useWalletMnemonicForm} from '../features/wallet/hooks/useWalletMnemonicForm';
+import {useWalletMnemonicForm} from '../features/wallet';
 import {walletState} from '../recoil/wallet';
 
 const Screen: FC = () => {
