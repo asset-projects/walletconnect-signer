@@ -1,8 +1,34 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# WalletConnect-Signer
+
+This will be a minimal app that introduces WalletConnect to a wallet created with react-native.
+
+# Test Dapps
+
+You can use the test decentralized applications (dapps) to verify the functionality of your WalletConnect integration. These dapps are available at:
+
+https://react-app.walletconnect.com/
+
+To test, follow these steps:
+
+1. Open the test dapp in a web browser.
+2. Initiate a connection from the dapp.
+3. Scan the QR code provided by the dapp using your wallet app with WalletConnect integration.
+4. Accept the connection request in your wallet app.
+5. Interact with the dapp via your wallet app to confirm the functionality of your WalletConnect integration.
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+
+## Step 0: Setup Environment Variables
+
+This project utilizes .env for environment variables. To create the .env file, run the following command
+
+```bash
+ cp .env.template .env
+```
+
+Now, you need to obtain the WALLET_CONNECT_PROJECT_ID from the [WalletConnect Dashboard](https://walletconnect.com/) and write it into the .env file under the same key.
 
 ## Step 1: Start the Metro Server
 
@@ -55,25 +81,13 @@ Now that you have successfully run the app, let's modify it.
 
    For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
-## Congratulations! :tada:
+## References
 
-You've successfully run and modified your React Native App. :partying_face:
+You may find the following resources useful:
 
-### Now what?
+- [WalletConnect's React Native Installation Guide](https://docs.walletconnect.com/2.0/reactnative/web3wallet/Installation)
+- [WalletConnect's React Native Examples on GitHub](https://github.com/WalletConnect/react-native-examples)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## License
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+[MIT](./LICENSE)
