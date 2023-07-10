@@ -1,11 +1,9 @@
-import type {SessionTypes} from '@walletconnect/types';
-import React, {type FC, useEffect, useState} from 'react';
+import React, {type FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {colors} from '../../../../commons';
-import {walletConnectConnectedState} from '../../../../recoil/walletConnect';
+import {walletConnectActiveSessionsState} from '../../../../recoil/walletConnect';
 import {isEmptyObject} from '../../../../utils/commons';
-import {useWalletConnectState} from '../../context/walletConnectProvider';
 import {WalletConnectSessionList} from './list';
 
 export const WalletConnectSessions: FC = () => {
@@ -19,22 +17,9 @@ export const WalletConnectSessions: FC = () => {
 };
 
 const Main: FC = () => {
-  const {web3wallet} = useWalletConnectState();
-  const isWalletConnectConnected = useRecoilValue(walletConnectConnectedState);
+  const activeSessions = useRecoilValue(walletConnectActiveSessionsState);
 
-  const [activeSessions, setActiveSessions] = useState<
-    Record<string, SessionTypes.Struct> | undefined
-  >();
-
-  useEffect(() => {
-    if (web3wallet) {
-      const _activeSessions = web3wallet.getActiveSessions();
-      !isEmptyObject(_activeSessions) && setActiveSessions(_activeSessions);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isWalletConnectConnected]);
-
-  if (!activeSessions) {
+  if (!activeSessions || isEmptyObject(activeSessions)) {
     return (
       <View style={styles.emptySessionsContainer}>
         <Text style={styles.text}>No active sessions</Text>

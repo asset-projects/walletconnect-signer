@@ -6,6 +6,13 @@ export const walletConnectConnectedState = atom<boolean>({
   default: false,
 });
 
+export const walletConnectActiveSessionsState = atom<
+  Record<string, SessionTypes.Struct> | undefined
+>({
+  key: 'walletConnectActiveSessionsState',
+  default: undefined,
+});
+
 export const walletConnectPairedProposalState = atom<
   SignClientTypes.EventArguments['session_proposal']
 >({

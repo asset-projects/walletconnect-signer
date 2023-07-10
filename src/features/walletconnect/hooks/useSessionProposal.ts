@@ -3,9 +3,11 @@ import {getSdkError} from '@walletconnect/utils';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {walletState} from '../../../recoil/wallet';
 import {
+  walletConnectActiveSessionsState,
   walletConnectConnectedState,
   walletConnectPairedProposalState,
 } from '../../../recoil/walletConnect';
+import {isEmptyObject} from '../../../utils/commons';
 import {useWalletConnectBottomSheetDispatch} from '../context/bottomSheetProvider';
 import {useWalletConnectState} from '../context/walletConnectProvider';
 
@@ -13,6 +15,7 @@ export const useSessionProposal = () => {
   const wallet = useRecoilValue(walletState);
   const pairedProposal = useRecoilValue(walletConnectPairedProposalState);
   const setIsConnected = useSetRecoilState(walletConnectConnectedState);
+  const setActiveSessions = useSetRecoilState(walletConnectActiveSessionsState);
 
   const {web3wallet} = useWalletConnectState();
 
@@ -46,6 +49,9 @@ export const useSessionProposal = () => {
       relayProtocol: relays[0].protocol,
       namespaces,
     });
+
+    const activeSessions = web3wallet.getActiveSessions();
+    !isEmptyObject(activeSessions) && setActiveSessions(activeSessions);
 
     setIsConnected(true);
     closeBottomSheet();
