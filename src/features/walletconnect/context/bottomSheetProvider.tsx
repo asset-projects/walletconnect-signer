@@ -1,12 +1,12 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import type {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 import React, {
-  type FC,
-  type PropsWithChildren,
   createContext,
+  type FC,
   useContext,
+  type PropsWithChildren,
+  useCallback,
   useRef,
-  useMemo,
   useState,
 } from 'react';
 
@@ -44,26 +44,19 @@ export const WalletConnectBottomSheetProvider: FC<PropsWithChildren<Props>> = ({
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [bottomSheetType, setBottomSheetType] = useState<SheetType>('none');
 
-  const dispatchValues = useMemo(() => {
-    const openBottomSheet = (sheetType: SheetType) => {
-      setBottomSheetType(sheetType);
-      bottomSheetRef.current?.expand();
-    };
+  const openBottomSheet = useCallback((sheetType: SheetType) => {
+    setBottomSheetType(sheetType);
+    bottomSheetRef.current?.expand();
+  }, []);
 
-    const closeBottomSheet = () => {
-      setBottomSheetType('none');
-      bottomSheetRef.current?.close();
-    };
-
-    return {
-      openBottomSheet,
-      closeBottomSheet,
-    };
+  const closeBottomSheet = useCallback(() => {
+    setBottomSheetType('none');
+    bottomSheetRef.current?.close();
   }, []);
 
   return (
     <StateContext.Provider value={{bottomSheetRef, bottomSheetType}}>
-      <DispatchContext.Provider value={dispatchValues}>
+      <DispatchContext.Provider value={{openBottomSheet, closeBottomSheet}}>
         {children}
       </DispatchContext.Provider>
     </StateContext.Provider>

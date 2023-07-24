@@ -33,7 +33,7 @@ export const useSessionEffects = () => {
       setPairedProposal(proposal);
       openBottomSheet('approval');
     },
-    [openBottomSheet, setPairedProposal],
+    [openBottomSheet],
   );
 
   const onSessionRequest = useCallback(
@@ -70,7 +70,7 @@ export const useSessionEffects = () => {
           return openBottomSheet('sendTransaction');
       }
     },
-    [openBottomSheet, setRequestEventData, setRequestSession, web3wallet],
+    [openBottomSheet, web3wallet],
   );
 
   const onSessionDelete = useCallback(
@@ -78,7 +78,7 @@ export const useSessionEffects = () => {
       console.log('onSessionDelete', requestEvent);
       resetConnected();
     },
-    [resetConnected],
+    [],
   );
 
   const [isMounted, setIsMounted] = useState(false);
