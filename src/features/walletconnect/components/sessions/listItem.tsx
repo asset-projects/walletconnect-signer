@@ -1,7 +1,7 @@
 import type {SessionTypes} from '@walletconnect/types';
 import React, {type FC} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {colors, DEVICE_WIDTH} from '../../../../commons';
+import {COLORS, DEVICE_WIDTH} from '../../../../commons';
 
 type Props = {
   data: SessionTypes.Struct;
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: CONTAINER_PADDING,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: COLORS.border,
     borderRadius: 8,
   },
   iconContainer: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   url: {
-    color: colors.black2,
+    color: COLORS.black2,
     fontSize: 12,
   },
 });

@@ -1,7 +1,7 @@
 import React, {type FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {colors} from '../../../../commons';
+import {COLORS} from '../../../../commons';
 import {walletConnectActiveSessionsState} from '../../../../recoil/walletConnect';
 import {isEmptyObject} from '../../../../utils/commons';
 import {WalletConnectSessionList} from './list';
@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   title: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 16,
     fontWeight: 'bold',
   },
   text: {
-    color: colors.black,
+    color: COLORS.black,
   },
 });

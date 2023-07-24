@@ -2,9 +2,9 @@ import {useNavigation} from '@react-navigation/native';
 import React, {type FC} from 'react';
 import {Controller} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {colors, DEVICE_WIDTH} from '../../../../commons';
+import {COLORS, DEVICE_WIDTH} from '../../../../commons';
 import {Input} from '../../../../components/commons/input';
-import {RootStackNavigationProp} from '../../../../navigation';
+import type {RootStackNavigationProp} from '../../../../navigation';
 import {useSessionUriForm} from '../../hooks/useSessionUriForm';
 
 export const URIForm: FC = () => {
@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
     height: CONTAINER_MIN_HEIGHT,
     minHeight: CONTAINER_MIN_HEIGHT,
     width: DEVICE_WIDTH,
-    backgroundColor: colors.white,
+    backgroundColor: COLORS.white,
     paddingHorizontal: CONTAINER_PADDING,
-    borderColor: colors.border,
+    borderColor: COLORS.border,
     borderTopWidth: 1,
     borderBottomWidth: 1,
   },
@@ -80,11 +80,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 42,
     width: BUTTON_WIDTH,
-    backgroundColor: colors.blue,
+    backgroundColor: COLORS.blue,
     borderRadius: 8,
   },
   buttonText: {
-    color: colors.white,
+    color: COLORS.white,
     fontSize: 16,
     fontWeight: '800',
   },

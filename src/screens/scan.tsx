@@ -8,10 +8,10 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {COLORS} from '../commons';
 import {QRCodeScanner} from '../features/qrcodeScanner';
 import {URIForm} from '../features/walletconnect/components/uriForm';
 import type {RootStackNavigationProp} from '../navigation';
-import {colors} from '../commons';
 
 const Screen: FC = () => {
   const {goBack} = useNavigation<RootStackNavigationProp<'Scan'>>();
@@ -22,7 +22,7 @@ const Screen: FC = () => {
 
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={goBack} style={styles.button}>
-          <Icon name="chevron-left" size={30} color={colors.white} />
+          <Icon name="chevron-left" size={30} color={COLORS.white} />
         </TouchableOpacity>
       </View>
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
-    backgroundColor: colors.gray,
+    backgroundColor: COLORS.gray,
   },
   headerContainer: {
     // position: 'absolute',

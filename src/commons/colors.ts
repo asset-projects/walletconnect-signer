@@ -1,4 +1,6 @@
-export const colors = {
+// https://tailwindcolor.com/
+
+export const COLORS = {
   white: '#fff',
   black: 'rgba(0, 0, 0, 0.87)',
   black2: 'rgba(0, 0, 0, 0.6)',

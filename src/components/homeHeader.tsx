@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {type FC} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {colors} from '../commons';
+import {COLORS} from '../commons';
 import type {RootStackNavigationProp} from '../navigation';
 
 export const HomeHeader: FC = () => {
@@ -20,7 +20,7 @@ export const HomeHeader: FC = () => {
 
       <View style={styles.rightContainer}>
         <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-          <Icon name="scan" color={colors.gray} size={30} />
+          <Icon name="scan" color={COLORS.gray} size={30} />
         </TouchableOpacity>
       </View>
     </View>
