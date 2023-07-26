@@ -1,13 +1,13 @@
 import React, {type FC} from 'react';
 import {StyleSheet, TextInput, type TextInputProps} from 'react-native';
-import {colors} from '../../commons';
+import {COLORS} from '../../commons';
 
 export const Input: FC<TextInputProps> = props => {
   return (
     <TextInput
       {...props}
       style={[styles.input, props.style]}
-      placeholderTextColor={colors.inputPlaceholder}
+      placeholderTextColor={COLORS.inputPlaceholder}
     />
   );
 };
@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 42,
     width: '100%',
-    backgroundColor: colors.inputBackground,
+    backgroundColor: COLORS.inputBackground,
     paddingLeft: 8,
     paddingRight: 8,
-    borderColor: colors.inputBorder,
+    borderColor: COLORS.inputBorder,
     borderWidth: 1,
     borderRadius: 8,
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 16,
     fontWeight: '500',
   },

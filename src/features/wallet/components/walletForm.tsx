@@ -2,7 +2,7 @@ import React, {type FC} from 'react';
 import {Controller} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {DEVICE_WIDTH, colors} from '../../../commons';
+import {DEVICE_WIDTH, COLORS} from '../../../commons';
 import {Input} from '../../../components/commons/input';
 import {walletState} from '../../../recoil/wallet';
 import {useWalletMnemonicForm} from '../hooks/useWalletMnemonicForm';
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   formTitle: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 16,
     fontWeight: '600',
   },
   formErrorMessage: {
-    color: colors.red,
+    color: COLORS.red,
     fontSize: 14,
   },
   buttonContainer: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 42,
-    backgroundColor: colors.blue,
+    backgroundColor: COLORS.blue,
     borderRadius: 20,
   },
   submitButtonText: {
@@ -144,12 +144,12 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   resetButtonText: {
-    color: colors.blue,
+    color: COLORS.blue,
     fontSize: 15,
     fontWeight: '600',
   },
   address: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 14,
   },
 });
