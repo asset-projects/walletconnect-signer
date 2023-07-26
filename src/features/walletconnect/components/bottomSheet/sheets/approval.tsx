@@ -4,6 +4,7 @@ import {useRecoilValue} from 'recoil';
 import {DEVICE_WIDTH} from '../../../../../commons';
 import {walletConnectPairedProposalState} from '../../../../../recoil/walletConnect';
 import {useSessionProposal} from '../../../hooks/useSessionProposal';
+import {getChainName} from '../../../utils/getChainName';
 import {SheetHeader} from './commons/sheetHeader';
 
 export const ApprovalSheet: FC = () => {
@@ -32,8 +33,8 @@ export const ApprovalSheet: FC = () => {
 
           <View style={styles.tagsBox}>
             {chains?.map(method => (
-              <View key={`method_${method}`} style={styles.tag}>
-                <Text style={styles.tagText}>{method}</Text>
+              <View key={`chains_${method}`} style={styles.tag}>
+                <Text style={styles.tagText}>{getChainName(method)}</Text>
               </View>
             ))}
           </View>
@@ -56,7 +57,7 @@ export const ApprovalSheet: FC = () => {
 
           <View style={styles.tagsBox}>
             {events?.map(method => (
-              <View key={`method_${method}`} style={styles.tag}>
+              <View key={`event_${method}`} style={styles.tag}>
                 <Text style={styles.tagText}>{method}</Text>
               </View>
             ))}
