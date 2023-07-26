@@ -2,7 +2,10 @@ import React, {type FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {COLORS} from '../../../../commons';
-import {walletConnectActiveSessionsState} from '../../../../recoil/walletConnect';
+import {
+  walletConnectActiveSessionsState,
+  walletConnectConnectedState,
+} from '../../../../recoil/walletConnect';
 import {isEmptyObject} from '../../../../utils/commons';
 import {WalletConnectSessionList} from './list';
 
@@ -17,9 +20,10 @@ export const WalletConnectSessions: FC = () => {
 };
 
 const Main: FC = () => {
+  const isConnecting = useRecoilValue(walletConnectConnectedState);
   const activeSessions = useRecoilValue(walletConnectActiveSessionsState);
 
-  if (!activeSessions || isEmptyObject(activeSessions)) {
+  if (!isConnecting || !activeSessions || isEmptyObject(activeSessions)) {
     return (
       <View style={styles.emptySessionsContainer}>
         <Text style={styles.text}>No active sessions</Text>
