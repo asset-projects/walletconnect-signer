@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {type FC} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import Animated, {FadeIn, FadeInUp} from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useRecoilValue} from 'recoil';
 import {COLORS, DEVICE_WIDTH} from '../../../commons';
@@ -17,18 +18,29 @@ export const WalletCard: FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <View style={styles.editButtonContainer}>
+      <Animated.View style={styles.card} entering={FadeInUp.delay(100)}>
+        <Animated.View
+          style={styles.editButtonContainer}
+          entering={FadeIn.delay(200)}>
           <TouchableOpacity onPress={onPress} style={styles.editButton}>
             <Icon name="settings" color={COLORS.white} size={24} />
           </TouchableOpacity>
-        </View>
+        </Animated.View>
 
-        <Text style={styles.addressLabel}>ADDRESS</Text>
-        <Text numberOfLines={1} ellipsizeMode="middle" style={styles.address}>
+        <Animated.Text
+          style={styles.addressLabel}
+          entering={FadeInUp.delay(200)}>
+          ADDRESS
+        </Animated.Text>
+
+        <Animated.Text
+          numberOfLines={1}
+          ellipsizeMode="middle"
+          style={styles.address}
+          entering={FadeInUp.delay(200)}>
           {address}
-        </Text>
-      </View>
+        </Animated.Text>
+      </Animated.View>
     </View>
   );
 };

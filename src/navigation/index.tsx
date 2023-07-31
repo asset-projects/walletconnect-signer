@@ -38,6 +38,11 @@ const Navigation: FC = () => {
           component={WalletConnectSessionScreen}
           options={{headerShown: true}}
         />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{headerShown: true}}
+        />
       </Stack.Group>
 
       <Stack.Group screenOptions={{presentation: 'modal'}}>
@@ -46,7 +51,6 @@ const Navigation: FC = () => {
           component={ScanScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
