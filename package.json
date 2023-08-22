@@ -20,7 +20,7 @@
     "@walletconnect/jsonrpc-types": "^1.0.3",
     "@walletconnect/react-native-compat": "^2.10.0",
     "@walletconnect/web3wallet": "^1.9.0",
-    "ethers": "5.4",
+    "ethers": "5.7.2",
     "fast-text-encoding": "^1.0.6",
     "react": "18.2.0",
     "react-hook-form": "^7.45.4",
