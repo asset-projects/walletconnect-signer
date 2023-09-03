@@ -1,8 +1,9 @@
 import React, {type FC} from 'react';
 import {Controller} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Animated, {FadeIn, FadeInUp} from 'react-native-reanimated';
 import {useRecoilValue} from 'recoil';
-import {DEVICE_WIDTH, colors} from '../../../commons';
+import {DEVICE_WIDTH, COLORS} from '../../../commons';
 import {Input} from '../../../components/commons/input';
 import {walletState} from '../../../recoil/wallet';
 import {useWalletMnemonicForm} from '../hooks/useWalletMnemonicForm';
@@ -14,18 +15,30 @@ export const WalletForm: FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
-        <View style={styles.formTitleContainer}>
-          <Text style={styles.formTitle}>Address</Text>
-        </View>
+        <Animated.View style={styles.formTitleContainer}>
+          <Animated.Text
+            style={styles.formTitle}
+            entering={FadeInUp.delay(180)}>
+            Address
+          </Animated.Text>
+        </Animated.View>
 
-        <Text numberOfLines={1} ellipsizeMode="middle" style={styles.address}>
+        <Animated.Text
+          numberOfLines={1}
+          ellipsizeMode="middle"
+          style={styles.address}
+          entering={FadeInUp.delay(180)}>
           {address}
-        </Text>
+        </Animated.Text>
       </View>
 
       <View style={styles.formContainer}>
         <View style={styles.formTitleContainer}>
-          <Text style={styles.formTitle}>Seed phrase</Text>
+          <Animated.Text
+            style={styles.formTitle}
+            entering={FadeInUp.delay(200)}>
+            Seed phrase
+          </Animated.Text>
         </View>
 
         <Controller
@@ -33,7 +46,7 @@ export const WalletForm: FC = () => {
           name="phrase"
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}, formState: {errors}}) => (
-            <>
+            <Animated.View entering={FadeInUp.delay(200)}>
               <Input
                 value={value}
                 onChangeText={onChange}
@@ -45,19 +58,31 @@ export const WalletForm: FC = () => {
                 keyboardType="default"
               />
               {errors.phrase?.type === 'required' && (
-                <Text style={styles.formErrorMessage}>This is required.</Text>
+                <Animated.Text
+                  style={styles.formErrorMessage}
+                  entering={FadeIn.delay(200)}>
+                  This is required.
+                </Animated.Text>
               )}
               {errors.phrase?.type === 'validate' && (
-                <Text style={styles.formErrorMessage}>Invalid phrase.</Text>
+                <Animated.Text
+                  style={styles.formErrorMessage}
+                  entering={FadeIn.delay(200)}>
+                  Invalid phrase.
+                </Animated.Text>
               )}
-            </>
+            </Animated.View>
           )}
         />
       </View>
 
       <View style={styles.formContainer}>
         <View style={styles.formTitleContainer}>
-          <Text style={styles.formTitle}>Path</Text>
+          <Animated.Text
+            style={styles.formTitle}
+            entering={FadeInUp.delay(220)}>
+            Path
+          </Animated.Text>
         </View>
 
         <Controller
@@ -65,7 +90,7 @@ export const WalletForm: FC = () => {
           name="path"
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}, formState: {errors}}) => (
-            <>
+            <Animated.View entering={FadeInUp.delay(220)}>
               <Input
                 value={value}
                 onChangeText={onChange}
@@ -77,14 +102,20 @@ export const WalletForm: FC = () => {
                 keyboardType="default"
               />
               {errors.path?.type === 'required' && (
-                <Text style={styles.formErrorMessage}>This is required.</Text>
+                <Animated.Text
+                  style={styles.formErrorMessage}
+                  entering={FadeIn.delay(200)}>
+                  This is required.
+                </Animated.Text>
               )}
-            </>
+            </Animated.View>
           )}
         />
       </View>
 
-      <View style={styles.buttonContainer}>
+      <Animated.View
+        style={styles.buttonContainer}
+        entering={FadeInUp.delay(240)}>
         <TouchableOpacity onPress={onSubmit} style={styles.submitButton}>
           <Text style={styles.submitButtonText}>Save</Text>
         </TouchableOpacity>
@@ -92,7 +123,7 @@ export const WalletForm: FC = () => {
         <TouchableOpacity onPress={onReset} style={styles.resetButton}>
           <Text style={styles.resetButtonText}>reset</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     </View>
   );
 };
@@ -110,12 +141,12 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   formTitle: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 16,
     fontWeight: '600',
   },
   formErrorMessage: {
-    color: colors.red,
+    color: COLORS.red,
     fontSize: 14,
   },
   buttonContainer: {
@@ -128,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 42,
-    backgroundColor: colors.blue,
+    backgroundColor: COLORS.blue,
     borderRadius: 20,
   },
   submitButtonText: {
@@ -144,12 +175,12 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   resetButtonText: {
-    color: colors.blue,
+    color: COLORS.blue,
     fontSize: 15,
     fontWeight: '600',
   },
   address: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 14,
   },
 });

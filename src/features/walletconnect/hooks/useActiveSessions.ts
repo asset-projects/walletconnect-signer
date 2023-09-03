@@ -21,5 +21,5 @@ export const useActiveSessions = () => {
         setIsConnected(true);
       }
     }
-  }, [setActiveSessions, setIsConnected, web3wallet]);
+  }, [web3wallet]);
 };

@@ -79,6 +79,11 @@ export const EIP155_TEST_CHAINS = {
 
 export const EIP155_CHAINS = {...EIP155_MAINNET_CHAINS, ...EIP155_TEST_CHAINS};
 
+export const EIP155_CHAINS_BY_ID = Object.values(EIP155_CHAINS).reduce(
+  (acc, chain) => ({...acc, [chain.chainId]: chain}),
+  {},
+) as {[chainId: string]: (typeof EIP155_CHAINS)[keyof typeof EIP155_CHAINS]};
+
 /**
  * Types
  */

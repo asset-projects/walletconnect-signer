@@ -9,10 +9,10 @@ import {
   View,
 } from 'react-native';
 import {useRecoilValue} from 'recoil';
-import {COMMON_STYLES, DEVICE_WIDTH, colors} from '../commons';
+import {COLORS, COMMON_STYLES, DEVICE_WIDTH} from '../commons';
+import {useDisconnect} from '../features/walletconnect/hooks/useDisconnect';
 import type {RootStackNavigationProp, RootStackRouteProps} from '../navigation';
 import {walletConnectActiveSessionsState} from '../recoil/walletConnect';
-import {useDisconnect} from '../features/walletconnect/hooks/useDisconnect';
 
 const Screen: FC = () => {
   const {
@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   name: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 20,
     fontWeight: 'bold',
   },
   url: {
-    color: colors.black,
+    color: COLORS.black,
     fontSize: 16,
   },
   disconnectButton: {
@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: BUTTON_HEIGHT,
     width: BUTTON_WIDTH,
-    backgroundColor: colors.red,
+    backgroundColor: COLORS.red,
     borderRadius: 12,
   },
   disconnectButtonText: {
-    color: colors.white,
+    color: COLORS.white,
     fontSize: 16,
     fontWeight: 'bold',
   },

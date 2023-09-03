@@ -1,6 +1,6 @@
 import React, {type FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {colors} from '../../commons';
+import {COLORS} from '../../commons';
 
 type Props = {};
 
@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.gray,
+    backgroundColor: COLORS.gray,
   },
   text: {
-    color: colors.white,
+    color: COLORS.white,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

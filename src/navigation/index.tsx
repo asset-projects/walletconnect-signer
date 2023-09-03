@@ -1,13 +1,13 @@
-import React, {type FC} from 'react';
+import {RouteProp} from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   type NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
+import React, {type FC} from 'react';
 import HomeScreen from '../screens/home';
 import ScanScreen from '../screens/scan';
 import SettingsScreen from '../screens/settings';
 import WalletConnectSessionScreen from '../screens/walletConnectSession';
-import {RouteProp} from '@react-navigation/native';
 
 type RootStackParamList = {
   Home: undefined;
@@ -20,6 +20,7 @@ type StackScreenName = keyof RootStackParamList;
 
 export type RootStackNavigationProp<T extends StackScreenName> =
   NativeStackNavigationProp<RootStackParamList, T>;
+
 export type RootStackRouteProps<T extends StackScreenName> = RouteProp<
   RootStackParamList,
   T
@@ -37,6 +38,11 @@ const Navigation: FC = () => {
           component={WalletConnectSessionScreen}
           options={{headerShown: true}}
         />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{headerShown: true}}
+        />
       </Stack.Group>
 
       <Stack.Group screenOptions={{presentation: 'modal'}}>
@@ -45,7 +51,6 @@ const Navigation: FC = () => {
           component={ScanScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

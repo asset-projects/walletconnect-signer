@@ -7,6 +7,7 @@ import {
   walletConnectRequestSessionState,
 } from '../../../../../recoil/walletConnect';
 import {useSessionRequest} from '../../../hooks/useSessionRequest';
+import {getChainName} from '../../../utils/getChainName';
 import {getSignParamsMessage} from '../../../utils/helper';
 import {SheetHeader} from './commons/sheetHeader';
 
@@ -39,7 +40,7 @@ export const SignTypedDataSheet: FC = () => {
       <View style={styles.bodyContainer}>
         <View style={styles.chainContainer}>
           <Text style={styles.chainTitle}>Chain</Text>
-          <Text>{chainID}</Text>
+          <Text>{getChainName(chainID)}</Text>
         </View>
 
         <View style={styles.methodContainer}>
