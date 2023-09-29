@@ -1,13 +1,36 @@
 import React, {type FC} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Camera,
+  useCameraDevice,
+  useCameraFormat,
+  useCameraPermission,
+} from 'react-native-vision-camera';
 import {COLORS} from '../../commons';
-import {Camera, useCameraDevices} from 'react-native-vision-camera';
 
 type Props = {};
 
 export const QRCodeScanner: FC<Props> = () => {
-  const devices = useCameraDevices('wide-angle-camera');
-  const device = devices.back;
+  const {hasPermission, requestPermission} = useCameraPermission();
+
+  const onPress = () => requestPermission();
+
+  if (!hasPermission) {
+    return (
+      <View style={styles.cameraViewContainer}>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={styles.text}>Request Permission</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  return <Main />;
+};
+
+const Main = () => {
+  const device = useCameraDevice('back');
+  const format = useCameraFormat(device, [{fps: 60}, {videoResolution: 'max'}]);
 
   if (device == null) {
     return (
@@ -23,7 +46,12 @@ export const QRCodeScanner: FC<Props> = () => {
 
   return (
     <View style={styles.cameraViewContainer}>
-      <Camera style={StyleSheet.absoluteFill} device={device} isActive />
+      <Camera
+        style={StyleSheet.absoluteFill}
+        device={device}
+        format={format}
+        isActive
+      />
     </View>
   );
 };

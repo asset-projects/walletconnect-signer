@@ -532,7 +532,7 @@ PODS:
     - React-Core
     - React-RCTImage
   - SocketRocket (0.6.1)
-  - VisionCamera (3.0.0):
+  - VisionCamera (3.1.0):
     - React
     - React-callinvoker
     - React-Core
@@ -790,7 +790,7 @@ SPEC CHECKSUMS:
   RNReanimated: 726395a2fa2f04cea340274ba57a4e659bc0d9c1
   RNScreens: b21dc57dfa2b710c30ec600786a3fc223b1b92e7
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  VisionCamera: c4f239ef0ce8fb13937966b814f57925560f5596
+  VisionCamera: 53aa6766f9aea2342d8b7ba2761e98c717be33b0
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
