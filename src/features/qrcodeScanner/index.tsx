@@ -1,13 +1,16 @@
 import React, {type FC} from 'react';
+import {useFormContext} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
   Camera,
+  Code,
   useCameraDevice,
   useCameraFormat,
   useCameraPermission,
   useCodeScanner,
 } from 'react-native-vision-camera';
 import {COLORS} from '../../commons';
+import type {FormValues} from '../walletconnect';
 
 type Props = {};
 
@@ -30,13 +33,28 @@ export const QRCodeScanner: FC<Props> = () => {
 };
 
 const Main = () => {
+  const {setValue} = useFormContext<FormValues>();
   const device = useCameraDevice('back');
   const format = useCameraFormat(device, [{fps: 60}, {videoResolution: 'max'}]);
 
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
-    onCodeScanned: (codes: any) => {
-      console.log(`Scanned ${codes.length} codes!`);
+    onCodeScanned: (codes: Code[]) => {
+      if (!codes.length) {
+        return;
+      }
+
+      const {type, value} = codes[0];
+
+      if (type !== 'qr' || !value) {
+        return;
+      }
+
+      if (!value.startsWith('wc:')) {
+        return;
+      }
+
+      setValue('uri', value);
     },
   });
 
