@@ -5,6 +5,7 @@ import {
   useCameraDevice,
   useCameraFormat,
   useCameraPermission,
+  useCodeScanner,
 } from 'react-native-vision-camera';
 import {COLORS} from '../../commons';
 
@@ -32,6 +33,13 @@ const Main = () => {
   const device = useCameraDevice('back');
   const format = useCameraFormat(device, [{fps: 60}, {videoResolution: 'max'}]);
 
+  const codeScanner = useCodeScanner({
+    codeTypes: ['qr', 'ean-13'],
+    onCodeScanned: (codes: any) => {
+      console.log(`Scanned ${codes.length} codes!`);
+    },
+  });
+
   if (device == null) {
     return (
       <View style={styles.cameraViewContainer}>
@@ -51,6 +59,7 @@ const Main = () => {
         device={device}
         format={format}
         isActive
+        codeScanner={codeScanner}
       />
     </View>
   );
