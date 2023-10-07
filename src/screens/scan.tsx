@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {type FC} from 'react';
+import {FormProvider, useForm} from 'react-hook-form';
 import {
   SafeAreaView,
   StatusBar,
@@ -10,11 +11,12 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {COLORS} from '../commons';
 import {QRCodeScanner} from '../features/qrcodeScanner';
-import {URIForm} from '../features/walletconnect/components/uriForm';
+import {type FormValues, URIForm} from '../features/walletconnect';
 import type {RootStackNavigationProp} from '../navigation';
 
 const Screen: FC = () => {
   const {goBack} = useNavigation<RootStackNavigationProp<'Scan'>>();
+  const methods = useForm<FormValues>();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,8 +28,10 @@ const Screen: FC = () => {
         </TouchableOpacity>
       </View>
 
-      <QRCodeScanner />
-      <URIForm />
+      <FormProvider {...methods}>
+        <QRCodeScanner />
+        <URIForm />
+      </FormProvider>
     </SafeAreaView>
   );
 };
