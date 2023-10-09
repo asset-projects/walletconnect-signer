@@ -1,13 +1,13 @@
-import {useForm} from 'react-hook-form';
+import {useFormContext} from 'react-hook-form';
 import {sleep} from '../../../utils/commons';
 import {useWalletConnectDispatch} from '../context/walletConnectProvider';
 
-type FormData = {
+export type FormValues = {
   uri: string;
 };
 
 export const useSessionUriForm = (callback?: () => void) => {
-  const {control, handleSubmit, reset, setError} = useForm<FormData>();
+  const {control, handleSubmit, reset, setError} = useFormContext<FormValues>();
   const {pair} = useWalletConnectDispatch();
 
   const onSubmit = handleSubmit(async ({uri}) => {
