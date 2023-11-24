@@ -6859,10 +6859,10 @@ react-native-vector-icons@^10.0.2:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native-vision-camera@^3.6.9:
-  version "3.6.9"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-3.6.9.tgz#4a73ab225fc95798c2009f8a5c0ffc055ff35244"
-  integrity sha512-bUTLfcidLNQLiY6WD48T4y1qqE4bQ3GKdwQ6M0a/IyJhlHOSdkXlCoCMR/TByVUQZCZP7YEBuAUxgmVhQU/Ozg==
+react-native-vision-camera@^3.6.10:
+  version "3.6.10"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-3.6.10.tgz#e91aa67f96c82ce284b119764236b36edb7a8ea4"
+  integrity sha512-eakVB5how542IIKSOGjfULNnqYcUw8MAsNknh0CB2ehD9G+yDBUPOCLhCqcnVW0AVNUGMZemBivusQPYKl41hQ==
 
 react-native-worklets-core@^0.2.4:
   version "0.2.4"
