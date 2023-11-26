@@ -941,15 +941,23 @@ PODS:
   - React-Mapbuffer (0.73.0-rc.4):
     - glog
     - React-debug
+  - react-native-compat (2.10.5):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - react-native-config (1.5.1):
     - react-native-config/App (= 1.5.1)
   - react-native-config/App (1.5.1):
     - React-Core
-  - react-native-get-random-values (1.9.0):
+  - react-native-get-random-values (1.10.0):
     - React-Core
-  - react-native-netinfo (9.4.1):
+  - react-native-netinfo (11.1.0):
     - React-Core
   - react-native-safe-area-context (4.7.4):
+    - React-Core
+  - react-native-worklets-core (0.2.4):
+    - React
+    - React-callinvoker
     - React-Core
   - React-nativeconfig (0.73.0-rc.4)
   - React-NativeModulesApple (0.73.0-rc.4):
@@ -1092,9 +1100,9 @@ PODS:
     - React-jsi (= 0.73.0-rc.4)
     - React-logger (= 0.73.0-rc.4)
     - React-perflogger (= 0.73.0-rc.4)
-  - RNCAsyncStorage (1.19.5):
+  - RNCAsyncStorage (1.19.8):
     - React-Core
-  - RNGestureHandler (2.13.4):
+  - RNGestureHandler (2.14.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1132,10 +1140,11 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - SocketRocket (0.6.1)
-  - VisionCamera (3.6.4):
+  - VisionCamera (3.6.10):
     - React
     - React-callinvoker
     - React-Core
+    - react-native-worklets-core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1191,10 +1200,12 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector-modern`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
+  - "react-native-compat (from `../node_modules/@walletconnect/react-native-compat`)"
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-worklets-core (from `../node_modules/react-native-worklets-core`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1294,6 +1305,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   React-Mapbuffer:
     :path: "../node_modules/react-native/ReactCommon"
+  react-native-compat:
+    :path: "../node_modules/@walletconnect/react-native-compat"
   react-native-config:
     :path: "../node_modules/react-native-config"
   react-native-get-random-values:
@@ -1302,6 +1315,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-worklets-core:
+    :path: "../node_modules/react-native-worklets-core"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -1358,7 +1373,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost: 26fad476bfa736552bbfa698a06cc530475c1505
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
   FBLazyVector: c30d7c84d9d25e99f0d6832ae0849f73a4a69658
   FBReactNativeSpec: c0eeaaead2d93a2558ace9a2b2d597d053c6506b
   Flipper: c7a0093234c4bdd456e363f2f19b2e4b27652d44
@@ -1370,7 +1385,7 @@ SPEC CHECKSUMS:
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: 37525a5d056ef9b93d1578e04bc3ea1de940094f
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: c8106a2b9250a6fd1157c520ed0928cddb0bb90e
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
@@ -1395,10 +1410,12 @@ SPEC CHECKSUMS:
   React-jsinspector: 5548901692ef4a1943f7f4208abbf77a35c58bc7
   React-logger: 5761d3b499c34ff905d47eba897ccb033242eb57
   React-Mapbuffer: 9bfeeae0a1637598fc6697ec674cfbecb581af7d
+  react-native-compat: ee9e15e51da54a03c5b0c69dbc30f9f17b4231af
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
-  react-native-get-random-values: dee677497c6a740b71e5612e8dbd83e7539ed5bb
-  react-native-netinfo: fefd4e98d75cbdd6e85fc530f7111a8afdf2b0c5
+  react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
+  react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
   react-native-safe-area-context: 2cd91d532de12acdb0a9cbc8d43ac72a8e4c897c
+  react-native-worklets-core: b4094f51cb2bc649e297206425cb8956f4945e3e
   React-nativeconfig: b799490d1edf76fe53feebab3fb6385b26fcc740
   React-NativeModulesApple: 47a1d38c3b7600d989fd4b963192165ed10e7c6a
   React-perflogger: 77f7f259432c197d905edcb71fecadf1f5e1e720
@@ -1419,12 +1436,12 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 1c46d10f8d34f8cfb1617acbfa0dc0adbb595dae
   React-utils: 90f8d89937d2e04a941b9ce91b241034f5b4115a
   ReactCommon: 1be3b68d3f445d84dc3a8b10f38b1ef3a1fae6fc
-  RNCAsyncStorage: f2974eca860c16a3e56eea5771fda8d12e2d2057
-  RNGestureHandler: fd1ec90ab8d382d7c38f09dd524d727e8b619346
+  RNCAsyncStorage: 687bb9e85dd3d45b966662440dcfc0cd962347e6
+  RNGestureHandler: 61bfdfc05db9b79dd61f894dcd29d3dcc6db3c02
   RNReanimated: 437e6ddac19000900558b9f25a60a756dcb51f75
   RNScreens: 5f4df9babb21d30723580377b5f52d9f9baf0005
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  VisionCamera: 1910a51e4c6f6b049650086d343090f267b4c260
+  VisionCamera: b9f470768f0336e55347631744d29efd04ac475c
   Yoga: 3125dd507e33de31a96f0723e36fd92417844521
 
 PODFILE CHECKSUM: 96d5556dc879dbd0e04b5adf07bf8b75db2441e6
