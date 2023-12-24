@@ -944,7 +944,7 @@ PODS:
   - React-Mapbuffer (0.73.1):
     - glog
     - React-debug
-  - react-native-compat (2.10.5):
+  - react-native-compat (2.11.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1415,7 +1415,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 369048694e39942063c5d08e9580b43e2edd379a
   React-logger: e0c1e918d9588a9f39c9bc62d9d6bfe9ca238d9d
   React-Mapbuffer: 9731a0a63ebaf8976014623c4d637744d7353a7c
-  react-native-compat: ee9e15e51da54a03c5b0c69dbc30f9f17b4231af
+  react-native-compat: ad00864870eceb6550aad4868d67eb80b9e2c207
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
   react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
   react-native-netinfo: 25c87e28495d955b30aeca9c22594691668c907a
