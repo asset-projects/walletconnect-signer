@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {type FC} from 'react';
+import React from 'react';
 import {FormProvider, useForm} from 'react-hook-form';
 import {
   SafeAreaView,
@@ -14,7 +14,7 @@ import {QRCodeScanner} from '../features/qrcodeScanner';
 import {type FormValues, URIForm} from '../features/walletconnect';
 import type {RootStackNavigationProp} from '../navigation';
 
-const Screen: FC = () => {
+function Screen(): React.JSX.Element {
   const {goBack} = useNavigation<RootStackNavigationProp<'Scan'>>();
   const methods = useForm<FormValues>();
 
@@ -34,7 +34,7 @@ const Screen: FC = () => {
       </FormProvider>
     </SafeAreaView>
   );
-};
+}
 
 export default Screen;
 

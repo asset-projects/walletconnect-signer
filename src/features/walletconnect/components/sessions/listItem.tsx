@@ -1,5 +1,5 @@
 import type {SessionTypes} from '@walletconnect/types';
-import React, {type FC} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, DEVICE_WIDTH} from '../../../../commons';
 
@@ -8,7 +8,10 @@ type Props = {
   onPress: () => void;
 };
 
-export const WalletConnectSession: FC<Props> = ({data, onPress}) => {
+export function WalletConnectSession({
+  data,
+  onPress,
+}: Props): React.JSX.Element {
   const {name, icons, url} = data.peer.metadata;
 
   return (
@@ -23,7 +26,7 @@ export const WalletConnectSession: FC<Props> = ({data, onPress}) => {
       </View>
     </TouchableOpacity>
   );
-};
+}
 
 const CONTAINER_PADDING = 12;
 const CONTAINER_WIDTH = DEVICE_WIDTH - CONTAINER_PADDING * 2;

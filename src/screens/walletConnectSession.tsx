@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {type FC} from 'react';
+import React from 'react';
 import {
   Image,
   SafeAreaView,
@@ -14,7 +14,7 @@ import {useDisconnect} from '../features/walletconnect/hooks/useDisconnect';
 import type {RootStackNavigationProp, RootStackRouteProps} from '../navigation';
 import {walletConnectActiveSessionsState} from '../recoil/walletConnect';
 
-const Screen: FC = () => {
+function Screen(): React.JSX.Element {
   const {
     params: {topic},
   } = useRoute<RootStackRouteProps<'WalletConnectSession'>>();
@@ -78,7 +78,7 @@ const Screen: FC = () => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 export default Screen;
 

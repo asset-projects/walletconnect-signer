@@ -2,12 +2,12 @@ import {
   BottomSheetBackdrop,
   type BottomSheetBackdropProps,
 } from '@gorhom/bottom-sheet';
-import React, {type FC} from 'react';
+import React from 'react';
 
-export const CustomBottomSheetBackdrop: FC<
-  BottomSheetBackdropProps
-> = props => {
+export function CustomBottomSheetBackdrop(
+  props: BottomSheetBackdropProps,
+): React.JSX.Element {
   return (
     <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
   );
-};
+}

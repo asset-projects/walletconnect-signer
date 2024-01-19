@@ -3,7 +3,7 @@ import {
   createNativeStackNavigator,
   type NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
-import React, {type FC} from 'react';
+import React from 'react';
 import HomeScreen from '../screens/home';
 import ScanScreen from '../screens/scan';
 import SettingsScreen from '../screens/settings';
@@ -28,7 +28,7 @@ export type RootStackRouteProps<T extends StackScreenName> = RouteProp<
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const Navigation: FC = () => {
+function Navigation(): React.JSX.Element {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Group screenOptions={{headerShown: false}}>
@@ -54,6 +54,6 @@ const Navigation: FC = () => {
       </Stack.Group>
     </Stack.Navigator>
   );
-};
+}
 
 export default Navigation;

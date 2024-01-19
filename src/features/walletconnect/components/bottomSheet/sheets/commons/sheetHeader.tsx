@@ -1,4 +1,4 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DEVICE_WIDTH, COLORS} from '../../../../../../commons';
 
@@ -8,7 +8,7 @@ type Props = {
   url: string;
 };
 
-export const SheetHeader: FC<Props> = ({icon, name, url}) => {
+export function SheetHeader({icon, name, url}: Props): React.JSX.Element {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
@@ -28,7 +28,7 @@ export const SheetHeader: FC<Props> = ({icon, name, url}) => {
       </View>
     </View>
   );
-};
+}
 
 const CONTAINER_PADDING = 12;
 const APP_ICON_SIZE = 60;

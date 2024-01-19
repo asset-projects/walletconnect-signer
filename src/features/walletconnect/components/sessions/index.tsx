@@ -1,4 +1,4 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {COLORS} from '../../../../commons';
@@ -9,7 +9,7 @@ import {
 import {isEmptyObject} from '../../../../utils/commons';
 import {WalletConnectSessionList} from './list';
 
-export const WalletConnectSessions: FC = () => {
+export function WalletConnectSessions(): React.JSX.Element {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>WalletConnect Sessions</Text>
@@ -17,9 +17,9 @@ export const WalletConnectSessions: FC = () => {
       <Main />
     </View>
   );
-};
+}
 
-const Main: FC = () => {
+function Main(): React.JSX.Element {
   const isConnecting = useRecoilValue(walletConnectConnectedState);
   const activeSessions = useRecoilValue(walletConnectActiveSessionsState);
 
@@ -38,7 +38,7 @@ const Main: FC = () => {
       <WalletConnectSessionList data={sessions} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
