@@ -24,7 +24,7 @@
     "fast-text-encoding": "^1.0.6",
     "react": "18.2.0",
     "react-hook-form": "^7.49.3",
-    "react-native": "0.72.9",
+    "react-native": "0.72.10",
     "react-native-config": "^1.5.1",
     "react-native-gesture-handler": "^2.14.1",
     "react-native-get-random-values": "^1.10.0",
