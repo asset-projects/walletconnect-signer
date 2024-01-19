@@ -2,7 +2,6 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import type {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 import React, {
   createContext,
-  type FC,
   useContext,
   type PropsWithChildren,
   useCallback,
@@ -38,9 +37,9 @@ const DispatchContext = createContext<{
 
 type Props = {};
 
-export const WalletConnectBottomSheetProvider: FC<PropsWithChildren<Props>> = ({
+export function WalletConnectBottomSheetProvider({
   children,
-}) => {
+}: PropsWithChildren<Props>): React.JSX.Element {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [bottomSheetType, setBottomSheetType] = useState<SheetType>('none');
 
@@ -61,7 +60,7 @@ export const WalletConnectBottomSheetProvider: FC<PropsWithChildren<Props>> = ({
       </DispatchContext.Provider>
     </StateContext.Provider>
   );
-};
+}
 
 export const useWalletConnectBottomSheetState = () => useContext(StateContext);
 export const useWalletConnectBottomSheetDispatch = () =>

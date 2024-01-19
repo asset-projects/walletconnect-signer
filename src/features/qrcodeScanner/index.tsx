@@ -1,4 +1,4 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {useFormContext} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
@@ -14,7 +14,7 @@ import type {FormValues} from '../walletconnect';
 
 type Props = {};
 
-export const QRCodeScanner: FC<Props> = () => {
+export function QRCodeScanner({}: Props): React.JSX.Element {
   const {hasPermission, requestPermission} = useCameraPermission();
 
   const onPress = () => requestPermission();
@@ -30,7 +30,7 @@ export const QRCodeScanner: FC<Props> = () => {
   }
 
   return <Main />;
-};
+}
 
 const Main = () => {
   const {setValue} = useFormContext<FormValues>();

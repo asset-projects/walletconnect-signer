@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {type FC} from 'react';
+import React from 'react';
 import {Controller} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, DEVICE_WIDTH} from '../../../../commons';
@@ -7,7 +7,7 @@ import {Input} from '../../../../components/commons/input';
 import type {RootStackNavigationProp} from '../../../../navigation';
 import {useSessionUriForm} from '../../hooks/useSessionUriForm';
 
-export const URIForm: FC = () => {
+export function URIForm(): React.JSX.Element {
   const {goBack} = useNavigation<RootStackNavigationProp<'Scan'>>();
   const {control, onSubmit} = useSessionUriForm(goBack);
 
@@ -41,7 +41,7 @@ export const URIForm: FC = () => {
       />
     </View>
   );
-};
+}
 
 const CONTAINER_PADDING = 8;
 const CONTAINER_MIN_HEIGHT = 60;

@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {type FC} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Animated, {FadeIn, FadeInUp} from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -8,7 +8,7 @@ import {COLORS, DEVICE_WIDTH} from '../../../commons';
 import type {RootStackNavigationProp} from '../../../navigation';
 import {walletState} from '../../../recoil/wallet';
 
-export const WalletCard: FC = () => {
+export function WalletCard(): React.JSX.Element {
   const {navigate} = useNavigation<RootStackNavigationProp<'Home'>>();
   const {address} = useRecoilValue(walletState);
 
@@ -43,7 +43,7 @@ export const WalletCard: FC = () => {
       </Animated.View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

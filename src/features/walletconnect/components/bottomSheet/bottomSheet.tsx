@@ -1,5 +1,5 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, {type FC} from 'react';
+import React from 'react';
 import {
   INIT_BOTTOM_SHEET_INDEX,
   SNAP_POINTS,
@@ -11,7 +11,7 @@ import {SendTransactionSheet} from './sheets/sendTransaction';
 import {SignSheet} from './sheets/sign';
 import {SignTypedDataSheet} from './sheets/signTypedData';
 
-export const WalletConnectBottomSheet: FC = () => {
+export function WalletConnectBottomSheet(): React.JSX.Element {
   const {bottomSheetType} = useWalletConnectBottomSheetState();
   const {bottomSheetRef} = useWalletConnectBottomSheetState();
 
@@ -30,7 +30,7 @@ export const WalletConnectBottomSheet: FC = () => {
       {bottomSheetType === 'signTypedData' && <SignTypedDataSheet />}
     </BottomSheet>
   );
-};
+}
 
 // const styles = StyleSheet.create({
 //   bottomSheet_light: {

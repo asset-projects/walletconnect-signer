@@ -1,4 +1,4 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {DEVICE_WIDTH} from '../../../../../commons';
@@ -7,12 +7,12 @@ import {useSessionProposal} from '../../../hooks/useSessionProposal';
 import {getChainName} from '../../../utils/getChainName';
 import {SheetHeader} from './commons/sheetHeader';
 
-export const ApprovalSheet: FC = () => {
+export function ApprovalSheet(): React.JSX.Element {
   const proposal = useRecoilValue(walletConnectPairedProposalState);
   const {onAccept, onDecline} = useSessionProposal();
 
   if (!proposal) {
-    return null;
+    return <></>;
   }
 
   const {proposer, requiredNamespaces} = proposal.params;
@@ -80,7 +80,7 @@ export const ApprovalSheet: FC = () => {
       </View>
     </View>
   );
-};
+}
 
 const CONTAINER_PADDING = 12;
 

@@ -1,4 +1,4 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useRecoilValue} from 'recoil';
 import {DEVICE_WIDTH} from '../../../../../commons';
@@ -11,14 +11,14 @@ import {getChainName} from '../../../utils/getChainName';
 import {getSignParamsMessage} from '../../../utils/helper';
 import {SheetHeader} from './commons/sheetHeader';
 
-export const SignSheet: FC = () => {
+export function SignSheet(): React.JSX.Element {
   const requestSession = useRecoilValue(walletConnectRequestSessionState);
   const requestEventData = useRecoilValue(walletConnectRequestEventDataState);
 
   const {onApprove, onReject} = useSessionRequest();
 
   if (!requestSession || !requestEventData) {
-    return null;
+    return <></>;
   }
 
   const {
@@ -73,7 +73,7 @@ export const SignSheet: FC = () => {
       </View>
     </View>
   );
-};
+}
 
 const CONTAINER_PADDING = 12;
 

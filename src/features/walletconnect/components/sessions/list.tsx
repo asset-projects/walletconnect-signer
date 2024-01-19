@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import type {SessionTypes} from '@walletconnect/types';
-import React, {type FC, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {FlatList} from 'react-native';
 import type {RootStackNavigationProp} from '../../../../navigation';
 import {WalletConnectSession} from './listItem';
@@ -11,7 +11,7 @@ type Props = {
   data: SessionTypes.Struct[];
 };
 
-export const WalletConnectSessionList: FC<Props> = ({data}) => {
+export function WalletConnectSessionList({data}: Props): React.JSX.Element {
   const {navigate} = useNavigation<RootStackNavigationProp<'Home'>>();
 
   const renderItem = useCallback(
@@ -28,4 +28,4 @@ export const WalletConnectSessionList: FC<Props> = ({data}) => {
   return (
     <FlatList data={data} keyExtractor={keyExtractor} renderItem={renderItem} />
   );
-};
+}

@@ -1,11 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {type FC} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../commons';
 import type {RootStackNavigationProp} from '../navigation';
 
-export const HomeHeader: FC = () => {
+export function HomeHeader(): React.JSX.Element {
   const {navigate} = useNavigation<RootStackNavigationProp<'Home'>>();
 
   const onPress = () => {
@@ -25,7 +25,7 @@ export const HomeHeader: FC = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

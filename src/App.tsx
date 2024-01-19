@@ -9,7 +9,7 @@
  */
 
 import {NavigationContainer} from '@react-navigation/native';
-import React, {type FC} from 'react';
+import React from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {RecoilRoot} from 'recoil';
 import {COMMON_STYLES} from './commons/styles';
@@ -17,7 +17,7 @@ import {WalletConnectProvider} from './features/walletconnect';
 import {useInitialization} from './hooks/useInitialization';
 import Navigation from './navigation';
 
-const App: FC = () => {
+function App(): React.JSX.Element {
   return (
     <GestureHandlerRootView style={COMMON_STYLES.flex1}>
       <RecoilRoot>
@@ -27,9 +27,9 @@ const App: FC = () => {
       </RecoilRoot>
     </GestureHandlerRootView>
   );
-};
+}
 
-const Main: FC = () => {
+function Main(): React.JSX.Element {
   const {onInitialize} = useInitialization();
 
   return (
@@ -37,6 +37,6 @@ const Main: FC = () => {
       <Navigation />
     </NavigationContainer>
   );
-};
+}
 
 export default App;

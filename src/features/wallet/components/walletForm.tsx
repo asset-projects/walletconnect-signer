@@ -1,4 +1,4 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {Controller} from 'react-hook-form';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Animated, {FadeIn, FadeInUp} from 'react-native-reanimated';
@@ -8,7 +8,7 @@ import {Input} from '../../../components/commons/input';
 import {walletState} from '../../../recoil/wallet';
 import {useWalletMnemonicForm} from '../hooks/useWalletMnemonicForm';
 
-export const WalletForm: FC = () => {
+export function WalletForm(): React.JSX.Element {
   const {address} = useRecoilValue(walletState);
   const {control, onSubmit, onReset} = useWalletMnemonicForm();
 
@@ -126,7 +126,7 @@ export const WalletForm: FC = () => {
       </Animated.View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

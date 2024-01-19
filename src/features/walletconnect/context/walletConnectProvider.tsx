@@ -52,9 +52,9 @@ const DispatcherContext = createContext<{
 
 type Props = {};
 
-export const WalletConnectProvider: FC<PropsWithChildren<Props>> = ({
+export function WalletConnectProvider({
   children,
-}) => {
+}: PropsWithChildren<Props>): React.JSX.Element {
   const [state, dispatch] = useReducer(reducer, {});
 
   const createWeb3Wallet = async () => {
@@ -97,7 +97,7 @@ export const WalletConnectProvider: FC<PropsWithChildren<Props>> = ({
       </DispatcherContext.Provider>
     </StateContext.Provider>
   );
-};
+}
 
 const Main: FC<PropsWithChildren<{}>> = ({children}) => {
   useSessionEffects();

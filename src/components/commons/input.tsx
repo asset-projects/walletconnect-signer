@@ -1,8 +1,8 @@
-import React, {type FC} from 'react';
+import React from 'react';
 import {StyleSheet, TextInput, type TextInputProps} from 'react-native';
 import {COLORS} from '../../commons';
 
-export const Input: FC<TextInputProps> = props => {
+export function Input(props: TextInputProps): React.JSX.Element {
   return (
     <TextInput
       {...props}
@@ -10,7 +10,7 @@ export const Input: FC<TextInputProps> = props => {
       placeholderTextColor={COLORS.inputPlaceholder}
     />
   );
-};
+}
 
 const styles = StyleSheet.create({
   input: {
